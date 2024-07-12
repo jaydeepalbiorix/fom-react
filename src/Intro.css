@@ -1,0 +1,167 @@
+/* Intro.css */
+.App-header {
+  background-color: #FFFFFF;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(10px + 1vmin);
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  padding: 0; /* Remove padding */
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px; /* Add some padding for spacing */
+}
+
+.title-logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px; /* Space between the text and image */
+  width: 100%;
+  margin-left: 150px;
+  height: auto; /* Adjust to the content height */
+}
+
+.text-content {
+  flex: 1; /* Allow the text to take available space */
+  padding: 10px;
+  width: 50%;
+}
+
+.text-content h2 {
+  text-align: left;
+  font-weight: 800;
+  margin-top: 60px;
+}
+
+.text-content h3 {
+  font-weight: 700;
+  text-align: left;
+}
+
+.text-content h4 {
+  font-weight: 400;
+  text-align: left;
+  margin-bottom: 80px;
+}
+
+.intro h5 {
+  margin-top: 20px;
+  color: #333;
+}
+
+.intro p {
+  margin-top: 10px;
+  text-align: left;
+  max-width: 500px;
+}
+.intro-title {
+  font-size: 4vw;
+}
+
+.start-button {
+  background-color: white;
+  border: none;
+  font-size: 2.5vw;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.start-button:hover {
+  background-color: #543210;
+}
+.start-button-container {
+  text-align: left;
+  align-items: left;
+}
+
+.svg-text-container {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+}
+
+.start-svg {
+  margin-right: 10px;
+}
+
+.start-item {
+  vertical-align: middle; /* Align with the middle of the SVG */
+  text-align: left; /* Left align text */
+}
+
+.App-logo {
+  height: 100%; /* Take full height of the container */
+  max-height: 100vh; /* Ensure it doesn't exceed viewport height */
+  max-width: auto; /* Maintain aspect ratio */
+  pointer-events: none;
+  font-family: 'Montserrat', sans-serif;
+}
+/* Portrait Mode Adjustments */
+@media only screen and (orientation: portrait) {
+  .title-logo-container {
+    flex-direction: column; /* Stack items vertically in portrait mode */
+    margin-left: 10px; /* Center align */
+  }
+
+  .intro-title {
+    font-size: 6vw;
+  }
+
+  .text-content {
+    width: 90%; /* Take full width in portrait mode */
+    text-align: center; /* Center text */
+    margin-bottom: 0px;
+    padding: 5px;
+  }
+
+  .author-info img {
+    width: 80%; /* Adjust image size for portrait mode */
+    height: auto; /* Maintain aspect ratio */
+    margin-top: -20px; /* Negative margin to reduce space */
+  }
+
+  .start-button {
+    font-size: 6vw;
+  }
+}
+/* Specific adjustments for iPad Mini (768x1024) in portrait mode */
+@media only screen and (max-height: 768px) and (orientation: portrait) {
+  .header-content {
+    padding-top: 10px; /* Adjust padding to reduce top space */
+  }
+
+  .intro-title {
+    font-size: 5vw; /* Reduce font size of the title */
+    margin-top: 10px; /* Adjust top margin if needed */
+  }
+
+  .text-content {
+    padding-top: 10px; /* Additional top padding for text content */
+  }
+
+  .author-info img {
+    width: 50%; /* Further reduce the image size */
+    height: auto; /* Maintain aspect ratio */
+  }
+}

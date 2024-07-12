@@ -1,0 +1,66 @@
+.selectable-squares-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.arrow-container-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+}
+
+.arrow-container {
+  flex-grow: 1; /* Ensures it takes up the available space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+}
+
+.arrow-left-label,
+.arrow-right-label {
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap; /* Prevent text wrapping */
+  width: 100px; /* Ensure the label has enough space */
+  text-align: center; /* Center the text within the label */
+}
+
+.square-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px; /* Space between arrow and squares */
+}
+
+.square {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #716357; /* dark brown */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 24px;
+  user-select: none;
+}
+
+.square.selected {
+  border: 3px solid #716357;
+  background-color: #007bff;
+  color: white;
+}
+
+/* Media query for devices wider than 440px */
+@media (min-width: 441px) {
+  .square {
+    width: 50px;
+    height: 50px;
+  }
+}

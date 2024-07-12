@@ -1,0 +1,101 @@
+.results-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.answer-container {
+    margin: 10px;
+}
+.scrollable-content {
+  margin-top: 100px; /* Adjust based on the height of your fixed content */
+  flex: 1;
+  overflow-y: auto;
+}
+.report-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  padding: 2px 0;
+  justify-content: center;
+  gap: 2px; /* space between buttons */
+}
+
+.results { 
+    padding-top: 0px;
+}
+.report-links-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Space between links */
+}
+
+.report-link {
+  background: none;
+  border: none;
+  color: black;
+  text-decoration: underline;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+  padding: 0;
+}
+
+.report-link.disabled {
+  color: white;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.report-link.disabled:hover {
+  text-decoration: underline; /* Keep the underline for disabled links */
+}
+
+.report-link:hover {
+  text-decoration: underline; /* Optional: Remove underline on hover for active links */
+}
+
+.separator {
+  width: 100%; /* Adjust the width as needed */
+  margin: 10px 0; /* Space around the separator line */
+}
+/*
+.report-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.report-links-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.report-link {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.separator {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  margin: 10px 0;
+}
+*/

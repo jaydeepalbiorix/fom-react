@@ -1,0 +1,78 @@
+{
+  "name": "bite-survey-react",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": ".",
+  "dependencies": {
+    "@fontsource/roboto": "^5.0.13",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.8",
+    "babel-preset-es2015": "^6.24.1",
+    "express": "^4.19.2",
+    "html2pdf.js": "^0.10.1",
+    "jspdf": "^2.5.1",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-router-dom": "^6.23.1",
+    "react-scripts": "^5.0.1",
+    "react-select": "^5.8.0",
+    "react-share": "^5.1.0",
+    "react-spinners": "^0.13.8",
+    "svg2pdf.js": "^2.2.3",
+    "uuid": "^9.0.1",
+    "web-vitals": "^2.1.4",
+    "webpack": "^5.91.0",
+    "webpack-hot-middleware": "^2.26.1"
+  },
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "build": "react-scripts build",
+    "build:dev": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
+  "engines": {
+    "node": "21.7.1",
+    "npm": "10.5.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.3",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.24.3",
+    "@babel/preset-react": "^7.24.1",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^9.1.3",
+    "copy-webpack-plugin": "^12.0.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.2"
+  }
+}

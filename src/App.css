@@ -1,0 +1,240 @@
+.App-link {
+  color: #61dafb;
+}
+.survey {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 50vh; 
+  max-height: 50vh; /*Limit height to viewport height */
+  overflow-y: auto; /* Add scrollbar if content overflows */
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    //text-align: left;
+    margin-left: 0px;
+    margin-right: 0px;
+    min-height: 100vh; /* limit height to viewport height */
+    overflow-y:auto; /* add scrollbar if content overflows */
+}
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex:1; /* trae up remaining space */
+  font-size: 4vw;   /* 4% of viewport   old: calc(9px + 1vmin);*/
+  /*height: 100vh; /* Full viewport height */
+  justify-content: space-between; /* Space between elements */
+  overflow: hidden;
+  /*overflow-y:auto; /* add scrollbar if content overflows */
+}
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+/* Override styles for smaller screens */
+@media (max-width: 500px) {
+  .content-wrapper {
+    width: 100%;
+    padding: 0; /* Ensure no extra padding */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  .questionText {
+    font-size: 6vw; /* Adjust this value as needed */
+  }
+}
+.answered-count {
+  margin-top: 10px; /* Space above the answered count */
+  color: black;
+}
+
+
+.radioWrapper{
+    margin-bottom: 0px;
+}
+.evidence {
+    max-width: 100%;
+    width: 90%;
+    color:blue;
+}
+.inputText {
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px;
+    font-size: clamp(20px, 2.5vw, 24px);
+}
+.questionText {
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px;
+    font-size: clamp(20px, 2.5vw, 24px);
+}
+
+.question {
+    text-align: left; /* Aligns text to the left */
+    margin-left: 20px; /* Optionally add left margin for spacing */
+    margin-bottom: 20px;
+    font-size: clamp(16px, 2.5vw, 24px);
+}
+
+input::placeholder {
+    color: grey;
+}
+
+.select {
+    max-width: 100%
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.next-button:hover, .prev-button:hover, .last-button:hover, .first-button:hover {
+    background-color: #f0f0f0
+}
+.next-button, .prev-button, .last-button, .first-button {
+    font-size: 15;
+    padding: 10px 15;
+    margin: 5px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.pagination-controls {
+  background-color: #D2B48C; /* Dark Brown */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 3vw;   /* 4% of viewport   old: calc(9px + 1vmin);*/
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.links-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Space between links */
+}
+
+.pagination-link {
+  background: none;
+  border: none;
+  color: black;
+  text-decoration: underline;
+  font-size: 2vw;   /* 4% of viewport   old: calc(9px + 1vmin);*/
+  cursor: pointer;
+  margin: 5px;
+  padding: 0;
+}
+
+.pagination-link.disabled {
+  color: white;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.pagination-link.disabled:hover {
+  text-decoration: underline; /* Keep the underline for disabled links */
+}
+
+.pagination-link:hover {
+  text-decoration: underline; /* Optional: Remove underline on hover for active links */
+}
+
+.separator {
+  width: 100%; /* Adjust the width as needed */
+  margin: 10px 0; /* Space around the separator line */
+}
+.selectStyle .react-select__menu {
+  max-height: 400px; /* Adjust the max-height to show more entries */
+  overflow-y: auto;  /* Enable scrolling if there are more options */
+}
+/* SurveyQuestions.js*/
+.button-container {
+  display: flex;
+  justify-content: space-between; /*flex-end;*/
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  padding: 10px;
+}
+.fork-button-container {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  align-items: center;
+  gap: 10px; /* Space between the buttons */
+  width: 100%; /* Make the container full width */
+  box-sizing: border-box; /* Include padding in the width calculation */
+}
+.fork-text-area-container {
+  width: 100%; /* Ensure the container takes full width */
+}
+.buttons-right {
+  display: flex;
+  gap: 5px;
+}
+
+.button {
+  background-color: #654321; /* Dark Brown */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 40px; /* Square button */
+  height: 40px; /* Square button */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.button-text {
+  background-color: #654321; /* Dark Brown */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  height: 40px;  /*Square button */
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, transform 0.3s;
+  white-space: normal;
+  font-size: 4vw;   /*   old: calc(9px + 1vmin);*/
+}
+/* Media query for landscape mode */
+@media only screen and (orientation: landscape) {
+  .button-text {
+    font-size: 3vh; /* Adjust this value as needed for landscape mode */
+  }
+}
+
+.answered-count {
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(20px, 2.5vw, 24px);
+  text-align: center;
+  flex-grow: 1;
+}
+
+.caret {
+  margin-left: 10px;
+}
+.caret-upside-down {
+  transform: rotate(180deg);
+}
