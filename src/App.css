@@ -1,3 +1,21 @@
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-50vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromDown {
+  0% {
+    transform: translateY(50vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -49,8 +67,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow-y: auto;
   flex-grow: 1;
+ 
+}
+.animationDesignUp{
+  animation: slideInFromTop 0.7s ease-out
+}
+.animationDesignDown{
+  animation: slideInFromDown 0.7s ease-out
 }
 
 /* Override styles for smaller screens */

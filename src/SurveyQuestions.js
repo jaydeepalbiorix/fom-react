@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import RadioDropdown from "./RadioDropdown.js";
@@ -23,7 +23,7 @@ const SurveyQuestions = ({
   questionsPerPage,
 }) => {
   const navigate = useNavigate();
-
+  const [keyPress, setKeyPress] = useState("");
   /*  useEffect(() => {
        console.log("allQuestions updated",allQuestions);
   }, [allQuestions] );  
@@ -82,6 +82,7 @@ const SurveyQuestions = ({
   ]); // Recalculate displayed questions when currentPage or allQuestions changes
 
   const handleNext = (advance_count = 1) => {
+    setKeyPress("downKey");
     //console.log("set next page current Page",currentPage, "total Pages", totalPages);
     onPageChange((currentPage) =>
       Math.min(currentPage + advance_count, totalPages)
@@ -90,6 +91,7 @@ const SurveyQuestions = ({
   };
 
   const handlePrevious = () => {
+    setKeyPress("upKey");
     onPageChange((currentPage) => Math.max(currentPage - 1, 1));
     //console.log("set prev page to ",Math.min(currentPage - 1, totalPages), "currentPage",currentPage);
   };
@@ -225,7 +227,15 @@ const SurveyQuestions = ({
       <div className="main-content bg_style-main-content">
         <div className="content-wrapper">
           {currentQuestions?.map((question, qindex) => (
-            <div key={question.num} className="question">
+            <div
+              key={question.num}
+              className={`question ${
+                keyPress === "upKey"
+                  ? "animationDesignUp"
+                  : "animationDesignDown"
+              }`}
+              // className="question animationDesignDown"
+            >
               <div className="questionText">{question.text}</div>
               <RadioDropdown
                 question={question}
