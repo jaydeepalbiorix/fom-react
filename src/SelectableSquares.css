@@ -51,9 +51,13 @@
   user-select: none;
 }
 
+.square:hover{
+  background-color: rgba(113, 99, 87, 0.3);
+}
+
 .square.selected {
-  border: 3px solid #716357;
-  background-color: #007bff;
+  background-color: rgb(113, 99, 87);
+  box-shadow: rgb(113, 99, 87) 0px 0px 0px 2px inset;
   color: white;
 }
 

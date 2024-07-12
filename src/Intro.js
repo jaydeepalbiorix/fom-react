@@ -48,8 +48,8 @@ const Intro = () => {
             <div className="svg-text-container">
               <svg
                 className="start-svg"
-                width="50"
-                height="50"
+                width="25"
+                height="25"
                 viewBox="0 0 50 50"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -59,14 +59,14 @@ const Intro = () => {
                   r="20"
                   stroke="black"
                   strokeWidth="2"
-                  fill="none"
+                  fill="#2E2C2C"
                 />
                 <line
                   x1="25"
                   y1="25"
                   x2="25"
                   y2="8"
-                  stroke="black"
+                  stroke="white"
                   strokeWidth="2"
                 />
                 <line
@@ -74,7 +74,7 @@ const Intro = () => {
                   y1="25"
                   x2="35"
                   y2="30"
-                  stroke="black"
+                  stroke="white"
                   strokeWidth="2"
                 />
               </svg>

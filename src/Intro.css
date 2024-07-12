@@ -77,28 +77,33 @@
 }
 
 .start-button {
-  background-color: white;
+  background-color: rgb(113, 99, 87);
+  color: white;
   border: none;
-  font-size: 2.5vw;
+  font-size: 25px;
   border-radius: 4px;
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .start-button:hover {
-  background-color: #543210;
+  background-color: rgb(134, 122, 112);
 }
 .start-button-container {
   text-align: left;
   align-items: left;
+  align-items: center;
+  display: flex;
+  gap: 10px;
 }
 
 .svg-text-container {
   display: flex;
-  align-items: center; /* Align items vertically in the center */
+  align-items: center; 
 }
 
 .start-svg {
