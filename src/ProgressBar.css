@@ -10,11 +10,12 @@
   width: 100%; /* Make the inner container take the full width */
   position: relative;
   z-index: 10;
+  margin-top: -15px;
 }
 
 progress {
   width: 100%; /* Make the progress element take the full width */
-  height: 50%; /* Optional: Set the height to match the container height */
+  height: 30%; /* Optional: Set the height to match the container height */
   -webkit-appearance: none; /* Remove default styling on WebKit browsers */
   appearance: none; /* Remove default styling on other browsers */
 }
