@@ -32,7 +32,7 @@ const QuestionRenderer = ({
 
   useEffect(() => {
     const handleKeyPress2 = (event) => {
-        console.log('keypress',event);
+      console.log('keypress', event);
       if (event.key === 'Enter') {
         handleTextOtherChange(set_id, question.num, event.target.value);
       }

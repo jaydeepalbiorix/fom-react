@@ -1,21 +1,29 @@
-
-import React from 'react';
+import React from "react";
 //import Select from 'react-select';
 //import { useState} from 'react';
 //import SelectableSquares from './SelectableSquares.js';
 //import CustomRadioButton from './CustomRadioButton.js';
-import QuestionRenderer from './QuestionRenderer.js';
+import QuestionRenderer from "./QuestionRenderer.js";
 
-const RadioDropdown = ({ question, answers, handleAnswerChange, textResponses, handleTextOtherChange, set_id }) => {
+const RadioDropdown = ({
+  question,
+  answers,
+  handleAnswerChange,
+  textResponses,
+  handleTextOtherChange,
+  set_id,
+}) => {
   //const [selectedRadio, setSelectedRadio] = useState(null);
   // Convert your valid options to a format react-select understands
 
   const options = JSON.parse(question?.valid)?.map((choice, index) => ({
     value: index + 1,
-    label: choice
+    label: choice,
   }));
   // Find the selected option based on the current answer
-  const selectedOption = options?.find(option => option.value === answers[question.num]?.answer_id);
+  const selectedOption = options?.find(
+    (option) => option.value === answers[question.num]?.answer_id
+  );
 
   const handleOptionSelect = (questionNum, option) => {
     handleAnswerChange(set_id, questionNum, option);
@@ -24,7 +32,7 @@ const RadioDropdown = ({ question, answers, handleAnswerChange, textResponses, h
   const selectedAnswer = answers[question.num]?.answer_id;
 
   // Handler for when a new option is selected
-  const onNumericChange = selectedOption => {
+  const onNumericChange = (selectedOption) => {
     handleAnswerChange(set_id, question.num, selectedOption.value);
   };
 

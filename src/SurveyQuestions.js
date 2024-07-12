@@ -161,7 +161,9 @@ const SurveyQuestions = ({
   const onAnswerChange = (set_id, questionId, answer) => {
     console.log("onAnswerChange Q:", questionId, "A:", answer);
     handleAnswerChange(set_id, questionId, answer);
-    handleNext();
+    setTimeout(() => {
+      handleNext();
+    }, 200);
   };
 
   const handleAnswerChange = (set_id, question_id, answer_id) => {
@@ -229,12 +231,10 @@ const SurveyQuestions = ({
           {currentQuestions?.map((question, qindex) => (
             <div
               key={question.num}
-              className={`question ${
-                keyPress === "upKey"
-                  ? "animationDesignUp"
-                  : "animationDesignDown"
-              }`}
-              // className="question animationDesignDown"
+              className={`question ${keyPress === "upKey"
+                ? "animationDesignUp"
+                : "animationDesignDown"
+                }`}
             >
               <div className="questionText">{question.text}</div>
               <RadioDropdown
