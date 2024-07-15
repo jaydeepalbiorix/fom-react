@@ -25,8 +25,9 @@ const SurveyQuestions = ({
   const navigate = useNavigate();
   const [keyPress, setKeyPress] = useState("");
   const divRef = useRef(null);
+  const scrollTimeoutRef = useRef(null);
 
-  useEffect(() => { }, [answers]);
+  useEffect(() => {}, [answers]);
 
   useEffect(() => {
     if (allQuestions && allQuestions.length > 0) {
@@ -170,18 +171,22 @@ const SurveyQuestions = ({
       event.preventDefault();
 
       const delta = Math.sign(event.deltaY);
-      console.log("🚀 ~ handleScroll ~ delta:", delta);
-
-      if (delta === -1) {
-        setKeyPress("upKey");
-        onPageChange((currentPage) => Math.max(currentPage - 1, 1));
-      } else if (delta === 1) {
-        let advance_count = 1;
-        setKeyPress("downKey");
-        onPageChange((currentPage) =>
-          Math.min(currentPage + advance_count, totalPages)
-        );
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
       }
+
+      scrollTimeoutRef.current = setTimeout(() => {
+        if (delta === -1) {
+          setKeyPress("upKey");
+          onPageChange((currentPage) => Math.max(currentPage - 1, 1));
+        } else if (delta === 1) {
+          let advance_count = 1;
+          setKeyPress("downKey");
+          onPageChange((currentPage) =>
+            Math.min(currentPage + advance_count, totalPages)
+          );
+        }
+      }, 150);
     };
 
     const divElement = divRef.current;
@@ -189,9 +194,13 @@ const SurveyQuestions = ({
       divElement.addEventListener("wheel", handleScroll);
     }
 
+    // Clean up the event listener when component unmounts
     return () => {
       if (divElement) {
         divElement.removeEventListener("wheel", handleScroll);
+      }
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
       }
     };
   }, []);
@@ -204,10 +213,11 @@ const SurveyQuestions = ({
           {currentQuestions?.map((question, qindex) => (
             <div
               key={question.num}
-              className={`question ${keyPress === "upKey"
+              className={`question ${
+                keyPress === "upKey"
                   ? "animationDesignUp"
                   : "animationDesignDown"
-                }`}
+              }`}
             >
               <div className="questionText">{question.text}</div>
               <RadioDropdown

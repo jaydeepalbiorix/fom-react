@@ -21,7 +21,6 @@ function isLocalStorageAvailable() {
     localStorage.removeItem(test);
     return true;
   } catch (e) {
-    console.log("ERROR local storage not available", e);
     return false;
   }
 }
@@ -48,16 +47,11 @@ function App() {
 
   const location = useLocation();
   const front_end_port = window.location.port;
-  //const adminPassword = process.env.REACT_APP_ADMIN_PASSWORD;
-  //console.log('admin passowrd', adminPassword);
   let host_development = "";
   if (front_end_port === "3000") {
-    //* dev mode only, 5050 is the port of the rest server
-    //host_development = 'http://localhost:5050'
     host_development =
       "https://bite-model-app-stage-6e97f85a4713.herokuapp.com";
   }
-  console.log("host_development", host_development);
   const handlePasswordSubmit = (password) => {
     setEnteredPassword(password);
   };
@@ -69,36 +63,26 @@ function App() {
       localStorage.removeItem(test);
       return true;
     } catch (e) {
-      console.log("ERROR local storage not available", e);
       return false;
     }
   }
   useEffect(() => {
     const ensureUserUUID = (searchParams) => {
       let userUUID = searchParams.get("userUUID");
-      console.log("does searchParams", searchParams, "have UUID? ", userUUID);
       if (userUUID) {
-        console.log("got UUID from searchParams", userUUID);
         try {
           localStorage.setItem("userUUID", userUUID);
-          console.log("setting localstorage", userUUID);
-        } catch (error) {
-          console.log("ERROR setting local storae", error);
-        }
+        } catch (error) {}
       } else {
         // If not present in URL, try getting from localStorage
         const storeUUID = localStorage.getItem("userUUID");
         if (storeUUID) {
           setUserUUID(storeUUID);
-          console.log("Got UUID from localStorage.", storeUUID);
         } else {
           if (isLocalStorageAvailable()) {
             const newUUID = uuidv4();
             localStorage.setItem("userUUID", newUUID);
             setUserUUID(newUUID);
-            console.log("Generating and set NEW UUID", newUUID);
-          } else {
-            console.log("Error, no local storeage, use cookies");
           }
         }
       }
@@ -110,7 +94,6 @@ function App() {
     if (userUUID) {
       axios.defaults.headers.common["X-User-UUID"] = userUUID;
       setIsHeaderSet(true);
-      //console.log("set axios header",axios.defaults.headers.common['X-User-UUID'], "to",userUUID );
     }
   }, [userUUID]);
 
@@ -120,7 +103,6 @@ function App() {
     }
     const fetchQuestions = async () => {
       try {
-        //console.log('120 fetch questions host dev',host_development, 'userUUID',userUUID);
         const response = await axios.get(`${host_development}/question_set/1`);
         const data = response.data;
         if (
@@ -152,7 +134,6 @@ function App() {
   useEffect(() => {
     let pageCount = Math.ceil(allQuestions.length / questionsPerPage);
     setTotalPages(pageCount);
-    //console.log("allQuestions updated",allQuestions);
   }, [allQuestions]);
 
   useEffect(() => {
@@ -161,7 +142,6 @@ function App() {
         //console.error("FETCH answers SKIPPED, no user");
         return;
       } else {
-        //console.log("147 host development , /get_answers for user:",userUUID, "axios header", axios.defaults.headers.common['X-User-UUID'] );
         const response = await axios.get(
           `${host_development}/get_answers/1/${userUUID}`
         );
@@ -172,9 +152,12 @@ function App() {
         }, {});
         setAnswers(answersDict);
         try {
-          //console.log('/get_answers_evidence');
           const response_evidence = await axios.get(
             `${host_development}/get_answers_evidence/1`
+          );
+          console.log(
+            "🚀 ~ fetchAnswers ~ response_evidence:",
+            response_evidence
           );
           if (
             !response_evidence.data ||
@@ -182,11 +165,9 @@ function App() {
           ) {
             // No data returned
             setIsDataLoaded(true);
-            console.log("No data returned from the server");
           } else {
             // Data returned
             if (Array.isArray(response_evidence.data)) {
-              //console.log('setTextResponses: answers evidence:', response_evidence.data);
               setTextResponses(response_evidence.data);
             } else {
               console.error(
@@ -208,7 +189,6 @@ function App() {
     const nonZeroCount = Object.values(answers).reduce((count, item) => {
       return item.answer_id !== 0 ? count + 1 : count;
     }, 0);
-    console.log("update answeredCount", nonZeroCount);
     setAnsweredCount(nonZeroCount);
     if (nonZeroCount > 1) {
       setIsDataLoaded(true);
@@ -216,7 +196,6 @@ function App() {
   }, [answers]);
 
   const handlePageChange = (newPage) => {
-    //console.log("set page",newPage);
     setCurrentPage(newPage);
   };
   if (!isDataLoaded) {
