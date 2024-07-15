@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import RadioDropdown from "./RadioDropdown.js";
 import ProgressBar from "./ProgressBar.js";
+import CustomPopup from "./components/CustomPopup/index.js";
 
 const SurveyQuestions = ({
   currentPage,
@@ -27,10 +28,19 @@ const SurveyQuestions = ({
   const divRef = useRef(null);
   const scrollTimeoutRef = useRef(null);
 
+  const [visibility, setVisibility] = useState(false);
+
+  const popupCloseHandler = () => {
+    setVisibility(false);
+  };
+
   useEffect(() => {}, [answers]);
 
   useEffect(() => {
     if (allQuestions && allQuestions.length > 0) {
+      if (allQuestions.length >= 39) {
+        allQuestions[3].isForty = true;
+      }
       let prevPage = currentPage - 2;
       if (prevPage < 0) prevPage = 0;
       const prevQ = allQuestions.slice(prevPage, prevPage + questionsPerPage);
@@ -210,26 +220,38 @@ const SurveyQuestions = ({
       <ProgressBar answeredCount={answeredCount} />
       <div className="main-content bg_style-main-content" ref={divRef}>
         <div className="content-wrapper">
-          {currentQuestions?.map((question, qindex) => (
-            <div
-              key={question.num}
-              className={`question ${
-                keyPress === "upKey"
-                  ? "animationDesignUp"
-                  : "animationDesignDown"
-              }`}
-            >
-              <div className="questionText">{question.text}</div>
-              <RadioDropdown
-                question={question}
-                answers={answers}
-                handleAnswerChange={onAnswerChange}
-                textResponses={textResponses}
-                handleTextOtherChange={onTextOtherChange}
-                set_id={set_id}
-              />
-            </div>
-          ))}
+          {currentQuestions?.map((question, qindex) => {
+            return (
+              <>
+                {/* {question.isForty && (
+                  <CustomPopup
+                    onClose={popupCloseHandler}
+                    show={question.isForty}
+                  >
+                    <p>Hello</p>
+                  </CustomPopup>
+                )} */}
+                <div
+                  key={question.num}
+                  className={`question ${
+                    keyPress === "upKey"
+                      ? "animationDesignUp"
+                      : "animationDesignDown"
+                  }`}
+                >
+                  <div className="questionText">{question.text}</div>
+                  <RadioDropdown
+                    question={question}
+                    answers={answers}
+                    handleAnswerChange={onAnswerChange}
+                    textResponses={textResponses}
+                    handleTextOtherChange={onTextOtherChange}
+                    set_id={set_id}
+                  />
+                </div>
+              </>
+            );
+          })}
         </div>
         <div className="pagination-controls">
           <div className="button-container">

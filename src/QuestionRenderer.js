@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Select from 'react-select';
-import CustomRadioButton from './CustomRadioButton.js';
-import SelectableSquares from './SelectableSquares.js';
+import React, { useState, useEffect } from "react";
+import Select from "react-select";
+import CustomRadioButton from "./CustomRadioButton.js";
+import SelectableSquares from "./SelectableSquares.js";
 
 const QuestionRenderer = ({
   question,
@@ -13,15 +13,18 @@ const QuestionRenderer = ({
   options,
   onNumericChange,
   selectedAnswer,
-  handleRadioChange
+  handleRadioChange,
 }) => {
   const validOptions = JSON.parse(question.valid) || [];
-  const initialTextResponse = textResponses?.find(item => item.question_id === question.num)?.answer_other ?? '';
+  const initialTextResponse =
+    textResponses?.find((item) => item.question_id === question.num)
+      ?.answer_other ?? "";
   const [localText, setLocalText] = useState(initialTextResponse);
 
   const handleLocalChange = (e) => {
     setLocalText(e.target.value);
   };
+
   const handleBlur = (e) => {
     handleTextOtherChange(set_id, question.num, e.target.value);
   };
@@ -32,19 +35,19 @@ const QuestionRenderer = ({
 
   useEffect(() => {
     const handleKeyPress2 = (event) => {
-      console.log('keypress', event);
-      if (event.key === 'Enter') {
+      console.log("keypress", event);
+      if (event.key === "Enter") {
         handleTextOtherChange(set_id, question.num, event.target.value);
       }
     };
-    window.addEventListener('keydown', handleKeyPress2);
+    window.addEventListener("keydown", handleKeyPress2);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyPress2);
+      window.removeEventListener("keydown", handleKeyPress2);
     };
   }, []);
 
-  if (question.ftype === 'Numeric' && question.category !== 'D') {
+  if (question.ftype === "Numeric" && question.category !== "D") {
     if (validOptions.length < 8) {
       return (
         <div key={`choice-${question.num}`} className="radioWrapper">
@@ -67,7 +70,7 @@ const QuestionRenderer = ({
         />
       );
     }
-  } else if (question.ftype === 'String' && Array.isArray(textResponses)) {
+  } else if (question.ftype === "String" && Array.isArray(textResponses)) {
     return (
       <>
         <input
@@ -79,7 +82,9 @@ const QuestionRenderer = ({
           onChange={handleLocalChange}
           onBlur={handleBlur}
         />
-        <button className={"button-text"} onClick={handleButtonClick}>Ok</button>
+        <button className={"button-text"} onClick={handleButtonClick}>
+          Ok
+        </button>
       </>
     );
   } else {
@@ -89,7 +94,9 @@ const QuestionRenderer = ({
           options={options}
           name={`question-${question.num}`}
           selectedRadio={selectedAnswer}
-          onChange={(selectedRadio) => handleRadioChange(selectedRadio, set_id, question.num)}
+          onChange={(selectedRadio) =>
+            handleRadioChange(selectedRadio, set_id, question.num)
+          }
         />
       );
     } else {
@@ -107,6 +114,5 @@ const QuestionRenderer = ({
     }
   }
 };
-
 
 export default QuestionRenderer;
