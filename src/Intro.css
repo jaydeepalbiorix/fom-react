@@ -104,6 +104,7 @@
 .svg-text-container {
   display: flex;
   align-items: center; 
+  padding-bottom: 24px;
 }
 
 .start-svg {

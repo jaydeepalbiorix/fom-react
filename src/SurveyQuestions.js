@@ -289,9 +289,7 @@ const SurveyQuestions = ({
                       handlePrevious();
                     }}
                   >
-                    <svg width="40" height="20" viewBox="0 0 40 20">
-                      <path d="M20 0l20 20H0L20 0z" fill="white" />
-                    </svg>
+                   {"<"}
                   </button>
                   <button
                     className="button"
@@ -300,9 +298,7 @@ const SurveyQuestions = ({
                       handleNext();
                     }}
                   >
-                    <svg width="40" height="20" viewBox="0 0 40 20">
-                      <path d="M20 20L0 0h40L20 20z" fill="white" />
-                    </svg>
+                   {">"}
                   </button>
                   <button
                     className={"button-text"}

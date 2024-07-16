@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
+
+html *
+{
+   font-family: "Epilogue", sans-serif !important;
+}
+
 @keyframes slideInFromTop {
   0% {
     transform: translateY(-50vh);
@@ -151,6 +158,7 @@
   margin-bottom: 10px;
   font-size: clamp(20px, 2.5vw, 24px);
   margin-bottom: 35px;
+  line-height: 32px;
 }
 
 .question {
@@ -259,6 +267,7 @@ input::placeholder {
   max-height: 400px;
   /* Adjust the max-height to show more entries */
   overflow-y: auto;
+  font-size: 2px !important;
   /* Enable scrolling if there are more options */
 }
 
@@ -319,6 +328,8 @@ input::placeholder {
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s, transform 0.3s;
+  transform: rotate(90deg);
+  font-size: 30PX;                                                      
 }
 
 .button-wrapper {
@@ -357,7 +368,6 @@ input::placeholder {
   font-weight: bold;
   font-family: 'Epilogue', sans-serif;
   font-size: clamp(20px, 2.5vw, 24px);
-  text-align: center;
   flex-grow: 1;
 }
 
@@ -424,6 +434,7 @@ input::placeholder {
   color: rgb(46, 44, 44);
   overflow-wrap: break-word;
   margin-bottom: 16px;
+  padding-top: 24px;
 }
 
 .fw-normal{
