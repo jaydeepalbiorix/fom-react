@@ -34,7 +34,7 @@ const SurveyQuestions = ({
     setVisibility(false);
   };
 
-  useEffect(() => { }, [answers]);
+  useEffect(() => {}, [answers]);
 
   useEffect(() => {
     if (allQuestions && allQuestions.length > 0) {
@@ -180,9 +180,8 @@ const SurveyQuestions = ({
   };
 
   useEffect(() => {
-
     if (visibility) {
-      return
+      return;
     }
     const handleScroll = (event) => {
       event.preventDefault();
@@ -226,14 +225,15 @@ const SurveyQuestions = ({
     <>
       <ProgressBar answeredCount={answeredCount} />
       <div className="main-content bg_style-main-content" ref={divRef}>
-
         {visibility ? (
-          <CustomPopup
-            onClose={popupCloseHandler}
-            show={visibility}
-          >
-            <p>Hello</p>
-          </CustomPopup>
+          <div>
+            <CustomPopup onClose={popupCloseHandler} show={visibility}>
+              <p> Do you want move ahead ? </p>{" "}
+              <button className="button-continue" onClick={popupCloseHandler}>
+                Continue..
+              </button>
+            </CustomPopup>
+          </div>
         ) : (
           <>
             <div className="content-wrapper">
@@ -241,12 +241,13 @@ const SurveyQuestions = ({
                 return (
                   <div
                     key={question.num}
-                    className={`question ${question.isForty
-                      ? ""
-                      : keyPress === "upKey"
+                    className={`question ${
+                      question.isForty
+                        ? ""
+                        : keyPress === "upKey"
                         ? "animationDesignUp"
                         : "animationDesignDown"
-                      }`}
+                    }`}
                   >
                     <div className="questionText">{question.text}</div>
                     <RadioDropdown

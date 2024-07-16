@@ -60,6 +60,14 @@
   opacity: 1;
 }
 
+.background-setup{
+  background-image: url(./assets/Images/background-image.jpg);
+  background-color: rgb(224, 201, 180);
+  background-position: center top;
+  background-size: cover;
+
+}
+
 .main-content {
   display: flex;
   flex-direction: column;
@@ -348,4 +356,22 @@ input::placeholder {
 
 .caret-upside-down {
   transform: rotate(180deg);
+}
+
+.button-continue {
+  background-color: rgb(101, 67, 33);
+  color: white;
+  padding: 10px 20px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.button-continue:hover {
+  background-color: rgba(113, 99, 87, 0.3);
+}
+.z5__aAxFZInh8wrohNDl{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }

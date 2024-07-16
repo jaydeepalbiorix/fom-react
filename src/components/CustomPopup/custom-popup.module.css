@@ -8,6 +8,11 @@
     right: 0;
     background: rgba(0, 0, 0, 0.7);
     transition: opacity 500ms;
+    background-image: url(../../assets/Images/background-image.jpg);
+  background-color: rgb(224, 201, 180);
+  background-position: center top;
+  background-size: cover;
+  font-size: 25px;
   }
   .popup {
     margin: 70px auto;
@@ -16,7 +21,6 @@
     border-radius: 5px;
     width: 30%;
     position: relative;
-    transition: all 5s ease-in-out;
   }
   
   .popup h2 {
