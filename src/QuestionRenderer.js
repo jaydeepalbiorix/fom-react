@@ -14,7 +14,6 @@ const QuestionRenderer = ({
   onNumericChange,
   selectedAnswer,
   handleRadioChange,
-  visibility,
 }) => {
   const validOptions = JSON.parse(question.valid) || [];
   const initialTextResponse =
@@ -104,7 +103,7 @@ const QuestionRenderer = ({
       return (
         <Select
           key={`select-${question.num}`}
-          className={`selectStyle ${question.isForty ? "isVisibleSelect" : ""}`}
+          className={`selectStyle`}
           value={selectedOption}
           onChange={onNumericChange}
           options={options}

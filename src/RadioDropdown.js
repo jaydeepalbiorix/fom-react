@@ -12,7 +12,6 @@ const RadioDropdown = ({
   textResponses,
   handleTextOtherChange,
   set_id,
-  visibility,
 }) => {
   //const [selectedRadio, setSelectedRadio] = useState(null);
   // Convert your valid options to a format react-select understands
@@ -44,7 +43,7 @@ const RadioDropdown = ({
 
   //console.log("selectedOption",selectedOption, "selectedAnswer",selectedAnswer);
   return (
-    <div>
+    <div className={` ${question.isForty ? "isVisibleSelect" : ""}`}>
       <QuestionRenderer
         key={question.num}
         question={question}
@@ -57,7 +56,6 @@ const RadioDropdown = ({
         onNumericChange={onNumericChange}
         selectedAnswer={selectedAnswer}
         handleRadioChange={handleRadioChange}
-        visibility={visibility}
       />
     </div>
   );

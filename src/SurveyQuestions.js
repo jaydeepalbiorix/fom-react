@@ -34,7 +34,7 @@ const SurveyQuestions = ({
     setVisibility(false);
   };
 
-  useEffect(() => {}, [answers]);
+  useEffect(() => { }, [answers]);
 
   useEffect(() => {
     if (allQuestions && allQuestions.length > 0) {
@@ -50,6 +50,9 @@ const SurveyQuestions = ({
       const start = (advance + currentPage - 1) * questionsPerPage;
       const end = start + questionsPerPage;
       const qlist = allQuestions.slice(start, end);
+      if (qlist[0].isForty) {
+        setVisibility(true);
+      }
       setCurrentQuestions(qlist);
     }
   }, [
@@ -177,6 +180,10 @@ const SurveyQuestions = ({
   };
 
   useEffect(() => {
+
+    if (visibility) {
+      return
+    }
     const handleScroll = (event) => {
       event.preventDefault();
 
@@ -219,81 +226,81 @@ const SurveyQuestions = ({
     <>
       <ProgressBar answeredCount={answeredCount} />
       <div className="main-content bg_style-main-content" ref={divRef}>
-        <div className="content-wrapper">
-          {currentQuestions?.map((question, qindex) => {
-            return (
-              <>
-                {question.isForty && (
-                  <CustomPopup
-                    onClose={popupCloseHandler}
-                    show={question.isForty}
-                  >
-                    <p>Hello</p>
-                  </CustomPopup>
-                )}
-                <div
-                  key={question.num}
-                  className={`question ${
-                    question.isForty
+
+        {visibility ? (
+          <CustomPopup
+            onClose={popupCloseHandler}
+            show={visibility}
+          >
+            <p>Hello</p>
+          </CustomPopup>
+        ) : (
+          <>
+            <div className="content-wrapper">
+              {currentQuestions?.map((question, qindex) => {
+                return (
+                  <div
+                    key={question.num}
+                    className={`question ${question.isForty
                       ? ""
                       : keyPress === "upKey"
-                      ? "animationDesignUp"
-                      : "animationDesignDown"
-                  }`}
-                >
-                  <div className="questionText">{question.text}</div>
-                  <RadioDropdown
-                    question={question}
-                    answers={answers}
-                    handleAnswerChange={onAnswerChange}
-                    textResponses={textResponses}
-                    handleTextOtherChange={onTextOtherChange}
-                    set_id={set_id}
-                    visibility={visibility}
-                  />
-                </div>
-              </>
-            );
-          })}
-        </div>
-        <div className="pagination-controls">
-          <div className="button-container">
-            <div className="answered-count">Answered: {answeredCount}</div>
-            <div className="buttons-right">
-              <button
-                className="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handlePrevious();
-                }}
-              >
-                <svg width="40" height="20" viewBox="0 0 40 20">
-                  <path d="M20 0l20 20H0L20 0z" fill="white" />
-                </svg>
-              </button>
-              <button
-                className="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNext();
-                }}
-              >
-                <svg width="40" height="20" viewBox="0 0 40 20">
-                  <path d="M20 20L0 0h40L20 20z" fill="white" />
-                </svg>
-              </button>
-              <button
-                className={"button-text"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleResults();
-                }}
-              >
-                Answers | Results
-              </button>
+                        ? "animationDesignUp"
+                        : "animationDesignDown"
+                      }`}
+                  >
+                    <div className="questionText">{question.text}</div>
+                    <RadioDropdown
+                      question={question}
+                      answers={answers}
+                      handleAnswerChange={onAnswerChange}
+                      textResponses={textResponses}
+                      handleTextOtherChange={onTextOtherChange}
+                      set_id={set_id}
+                    />
+                  </div>
+                );
+              })}
             </div>
-          </div>
-        </div>
+            <div className="pagination-controls">
+              <div className="button-container">
+                <div className="answered-count">Answered: {answeredCount}</div>
+                <div className="buttons-right">
+                  <button
+                    className="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePrevious();
+                    }}
+                  >
+                    <svg width="40" height="20" viewBox="0 0 40 20">
+                      <path d="M20 0l20 20H0L20 0z" fill="white" />
+                    </svg>
+                  </button>
+                  <button
+                    className="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNext();
+                    }}
+                  >
+                    <svg width="40" height="20" viewBox="0 0 40 20">
+                      <path d="M20 20L0 0h40L20 20z" fill="white" />
+                    </svg>
+                  </button>
+                  <button
+                    className={"button-text"}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleResults();
+                    }}
+                  >
+                    Answers | Results
+                  </button>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
