@@ -248,6 +248,10 @@ input::placeholder {
   /* Enable scrolling if there are more options */
 }
 
+.isVisibleSelect{
+  z-index: -1;
+}
+
 .css-1dimb5e-singleValue {
   overflow: visible !important;
 }

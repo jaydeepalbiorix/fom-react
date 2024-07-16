@@ -12,6 +12,7 @@ const RadioDropdown = ({
   textResponses,
   handleTextOtherChange,
   set_id,
+  visibility,
 }) => {
   //const [selectedRadio, setSelectedRadio] = useState(null);
   // Convert your valid options to a format react-select understands
@@ -56,6 +57,7 @@ const RadioDropdown = ({
         onNumericChange={onNumericChange}
         selectedAnswer={selectedAnswer}
         handleRadioChange={handleRadioChange}
+        visibility={visibility}
       />
     </div>
   );

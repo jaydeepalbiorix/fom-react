@@ -223,18 +223,20 @@ const SurveyQuestions = ({
           {currentQuestions?.map((question, qindex) => {
             return (
               <>
-                {/* {question.isForty && (
+                {question.isForty && (
                   <CustomPopup
                     onClose={popupCloseHandler}
                     show={question.isForty}
                   >
                     <p>Hello</p>
                   </CustomPopup>
-                )} */}
+                )}
                 <div
                   key={question.num}
                   className={`question ${
-                    keyPress === "upKey"
+                    question.isForty
+                      ? ""
+                      : keyPress === "upKey"
                       ? "animationDesignUp"
                       : "animationDesignDown"
                   }`}
@@ -247,6 +249,7 @@ const SurveyQuestions = ({
                     textResponses={textResponses}
                     handleTextOtherChange={onTextOtherChange}
                     set_id={set_id}
+                    visibility={visibility}
                   />
                 </div>
               </>
