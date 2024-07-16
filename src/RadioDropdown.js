@@ -41,7 +41,6 @@ const RadioDropdown = ({
     handleAnswerChange(set_id, questionNum, value);
   };
 
-  //console.log("selectedOption",selectedOption, "selectedAnswer",selectedAnswer);
   return (
     <div className={` ${question.isForty ? "isVisibleSelect" : ""}`}>
       <QuestionRenderer

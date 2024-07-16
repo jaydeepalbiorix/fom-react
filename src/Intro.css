@@ -95,10 +95,10 @@
 }
 .start-button-container {
   text-align: left;
-  align-items: left;
-  align-items: center;
   display: flex;
+  align-items: center;
   gap: 10px;
+  margin-top: 32px;
 }
 
 .svg-text-container {
@@ -107,10 +107,13 @@
 }
 
 .start-svg {
-  margin-right: 10px;
+  margin-right: 4px;
+  height: 15px;
+  width: 15px;
 }
 
 .start-item {
+  font-size: 14px;
   vertical-align: middle; /* Align with the middle of the SVG */
   text-align: left; /* Left align text */
 }

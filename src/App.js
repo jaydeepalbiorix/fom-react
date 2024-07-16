@@ -72,7 +72,7 @@ function App() {
       if (userUUID) {
         try {
           localStorage.setItem("userUUID", userUUID);
-        } catch (error) {}
+        } catch (error) { }
       } else {
         // If not present in URL, try getting from localStorage
         const storeUUID = localStorage.getItem("userUUID");
@@ -123,6 +123,7 @@ function App() {
             "Error fetching questions, got string instead of Array"
           );
         }
+        data[3].isForty = true
         setAllQuestions(data);
       } catch (error) {
         console.error("Error fetching questions:", error);
@@ -154,10 +155,6 @@ function App() {
         try {
           const response_evidence = await axios.get(
             `${host_development}/get_answers_evidence/1`
-          );
-          console.log(
-            "🚀 ~ fetchAnswers ~ response_evidence:",
-            response_evidence
           );
           if (
             !response_evidence.data ||

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import RadioDropdown from "./RadioDropdown.js";
 import ProgressBar from "./ProgressBar.js";
-import CustomPopup from "./components/CustomPopup/index.js";
+import CustomPopup from "./components/CustomPopup";
 
 const SurveyQuestions = ({
   currentPage,
@@ -34,13 +34,10 @@ const SurveyQuestions = ({
     setVisibility(false);
   };
 
-  useEffect(() => {}, [answers]);
+  useEffect(() => { }, [answers]);
 
   useEffect(() => {
     if (allQuestions && allQuestions.length > 0) {
-      if (allQuestions.length >= 39) {
-        allQuestions[3].isForty = true;
-      }
       let prevPage = currentPage - 2;
       if (prevPage < 0) prevPage = 0;
       const prevQ = allQuestions.slice(prevPage, prevPage + questionsPerPage);
@@ -48,11 +45,9 @@ const SurveyQuestions = ({
       const prev_qid = prevQ[0]?.num;
       let advance = 0;
       const start = (advance + currentPage - 1) * questionsPerPage;
+      console.log("🚀 ~ useEffect ~ currentPage:", currentPage)
       const end = start + questionsPerPage;
       const qlist = allQuestions.slice(start, end);
-      if (qlist[0].isForty) {
-        setVisibility(true);
-      }
       setCurrentQuestions(qlist);
     }
   }, [
@@ -63,6 +58,15 @@ const SurveyQuestions = ({
     setCurrentQuestions,
   ]);
 
+  useEffect(() => {
+    let advance = 0;
+    const start = (advance + currentPage - 1) * questionsPerPage;
+    const end = start + questionsPerPage;
+    const qlist = allQuestions.slice(start, end);
+    if (qlist[0].isForty) {
+      setVisibility(true);
+    }
+  }, [currentPage])
   const handleNext = (advance_count = 1) => {
     setKeyPress("downKey");
     onPageChange((currentPage) =>
@@ -228,10 +232,23 @@ const SurveyQuestions = ({
         {visibility ? (
           <div>
             <CustomPopup onClose={popupCloseHandler} show={visibility}>
-              <p> Do you want move ahead ? </p>{" "}
-              <button className="button-continue" onClick={popupCloseHandler}>
-                Continue..
-              </button>
+              <h3 style={{ marginBottom: '50px' }}> Do you want to move ahead? </h3>
+              <div className="button-wrapper">
+                <button className={"button-text"}
+                  onClick={popupCloseHandler}>
+                  Continue
+                </button>
+
+                <button
+                  className={"button-text"}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleResults();
+                  }}
+                >
+                  Answers | Results
+                </button>
+              </div>
             </CustomPopup>
           </div>
         ) : (
@@ -241,15 +258,14 @@ const SurveyQuestions = ({
                 return (
                   <div
                     key={question.num}
-                    className={`question ${
-                      question.isForty
-                        ? ""
-                        : keyPress === "upKey"
+                    className={`question ${question.isForty
+                      ? ""
+                      : keyPress === "upKey"
                         ? "animationDesignUp"
                         : "animationDesignDown"
-                    }`}
+                      }`}
                   >
-                    <div className="questionText">{question.text}</div>
+                    <div className="questionText">{`${currentPage})  ${question.text}`}</div>
                     <RadioDropdown
                       question={question}
                       answers={answers}
@@ -264,7 +280,7 @@ const SurveyQuestions = ({
             </div>
             <div className="pagination-controls">
               <div className="button-container">
-                <div className="answered-count">Answered: {answeredCount}</div>
+                <div className="answered-count"> Answered: {answeredCount}</div>
                 <div className="buttons-right">
                   <button
                     className="button"
