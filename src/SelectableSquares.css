@@ -15,7 +15,7 @@
 }
 
 .arrow-container {
-  flex-grow: 1; /* Ensures it takes up the available space */
+  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,16 +26,16 @@
 .arrow-right-label {
   position: absolute;
   transform: translateX(-50%);
-  white-space: nowrap; /* Prevent text wrapping */
-  width: 100px; /* Ensure the label has enough space */
-  text-align: center; /* Center the text within the label */
+  white-space: nowrap;
+  width: 100px;
+  text-align: center;
 }
 
 .square-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40px; /* Space between arrow and squares */
+  margin-top: 40px;
 }
 
 .square {
@@ -44,14 +44,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #716357; /* dark brown */
+  border: 2px solid #716357;
   border-radius: 4px;
   cursor: pointer;
   font-size: 24px;
   user-select: none;
 }
 
-.square:hover{
+.square:hover {
   background-color: rgba(113, 99, 87, 0.3);
 }
 
@@ -61,7 +61,6 @@
   color: white;
 }
 
-/* Media query for devices wider than 440px */
 @media (min-width: 441px) {
   .square {
     width: 50px;

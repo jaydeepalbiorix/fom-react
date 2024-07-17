@@ -1,6 +1,5 @@
-import React from 'react';
-import './ProgressBar.css'; // Import the CSS file
-
+import React from "react";
+import "./ProgressBar.css";
 const ProgressBar = ({ answeredCount }) => {
   return (
     <div className="progress-bar">
@@ -12,4 +11,3 @@ const ProgressBar = ({ answeredCount }) => {
 };
 
 export default ProgressBar;
-

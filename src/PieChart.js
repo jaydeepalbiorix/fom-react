@@ -1,7 +1,6 @@
 const PieChart = ({ greenSize, orangeSize, x, y, radius }) => {
   const total = greenSize + orangeSize;
   const greenAngle = (greenSize / total) * 360;
-  const orangeAngle = (orangeSize / total) * 360;
 
   const getCoordinatesForPercent = (percent) => {
     const x = Math.cos(2 * Math.PI * percent) * radius;
@@ -19,7 +18,9 @@ const PieChart = ({ greenSize, orangeSize, x, y, radius }) => {
         fill="green"
       />
       <path
-        d={`M 0 0 L ${greenX} ${greenY} A ${radius} ${radius} 0 ${1 - largeArcFlag} 1 ${radius} 0 Z`}
+        d={`M 0 0 L ${greenX} ${greenY} A ${radius} ${radius} 0 ${
+          1 - largeArcFlag
+        } 1 ${radius} 0 Z`}
         fill="orange"
       />
     </g>

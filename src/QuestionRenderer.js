@@ -30,7 +30,7 @@ const QuestionRenderer = ({
   };
 
   const handleButtonClick = () => {
-    handleTextOtherChange(set_id, question.num, localText,'buttonClicked');
+    handleTextOtherChange(set_id, question.num, localText, "buttonClicked");
   };
 
   useEffect(() => {

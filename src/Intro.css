@@ -1,4 +1,3 @@
-/* Intro.css */
 .App-header {
   background-color: #FFFFFF;
   min-height: 10vh;
@@ -10,7 +9,7 @@
   color: black;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  padding: 0; /* Remove padding */
+  padding: 0;
 }
 
 .author-info {
@@ -26,7 +25,6 @@
   align-items: center;
   width: 100%;
   padding: 20px;
-   /* Add some padding for spacing */
 }
 
 .title-logo-container {
@@ -34,14 +32,14 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  gap: 20px; /* Space between the text and image */
+  gap: 20px;
   width: 100%;
   margin-left: 150px;
-  height: auto; /* Adjust to the content height */
+  height: auto;
 }
 
 .text-content {
-  flex: 1; /* Allow the text to take available space */
+  flex: 1;
   padding: 10px;
   width: 50%;
 }
@@ -73,6 +71,7 @@
   text-align: left;
   max-width: 500px;
 }
+
 .intro-title {
   font-size: 4vw;
 }
@@ -94,6 +93,7 @@
 .start-button:hover {
   background-color: rgb(134, 122, 112);
 }
+
 .start-button-container {
   text-align: left;
   display: flex;
@@ -104,7 +104,7 @@
 
 .svg-text-container {
   display: flex;
-  align-items: center; 
+  align-items: center;
   padding-bottom: 24px;
 }
 
@@ -116,22 +116,22 @@
 
 .start-item {
   font-size: 14px;
-  vertical-align: middle; /* Align with the middle of the SVG */
-  text-align: left; /* Left align text */
+  vertical-align: middle;
+  text-align: left;
 }
 
 .App-logo {
-  height: 100%; /* Take full height of the container */
-  max-height: 100vh; /* Ensure it doesn't exceed viewport height */
-  max-width: auto; /* Maintain aspect ratio */
+  height: 100%;
+  max-height: 100vh;
+  max-width: auto;
   pointer-events: none;
   font-family: 'Montserrat', sans-serif;
 }
-/* Portrait Mode Adjustments */
+
 @media only screen and (orientation: portrait) {
   .title-logo-container {
-    flex-direction: column; /* Stack items vertically in portrait mode */
-    margin-left: 10px; /* Center align */
+    flex-direction: column;
+    margin-left: 10px;
   }
 
   .intro-title {
@@ -139,39 +139,39 @@
   }
 
   .text-content {
-    width: 90%; /* Take full width in portrait mode */
-    text-align: center; /* Center text */
+    width: 90%;
+    text-align: center;
     margin-bottom: 0px;
     padding: 5px;
   }
 
   .author-info img {
-    width: 80%; /* Adjust image size for portrait mode */
-    height: auto; /* Maintain aspect ratio */
-    margin-top: -20px; /* Negative margin to reduce space */
+    width: 80%;
+    height: auto;
+    margin-top: -20px;
   }
 
   .start-button {
     font-size: 6vw;
   }
 }
-/* Specific adjustments for iPad Mini (768x1024) in portrait mode */
+
 @media only screen and (max-height: 768px) and (orientation: portrait) {
   .header-content {
-    padding-top: 10px; /* Adjust padding to reduce top space */
+    padding-top: 10px;
   }
 
   .intro-title {
-    font-size: 5vw; /* Reduce font size of the title */
-    margin-top: 10px; /* Adjust top margin if needed */
+    font-size: 5vw;
+    margin-top: 10px;
   }
 
   .text-content {
-    padding-top: 10px; /* Additional top padding for text content */
+    padding-top: 10px;
   }
 
   .author-info img {
-    width: 50%; /* Further reduce the image size */
-    height: auto; /* Maintain aspect ratio */
+    width: 50%;
+    height: auto;
   }
 }
