@@ -143,21 +143,70 @@ html *
 .evidence {
   max-width: 100%;
   width: 90%;
-  color: blue;
+  color: #654321;
+}
+.fork-email{
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+
+.email-label{
+display: flex;
+}
+
+.muiInput {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #654321; 
+  font-size: clamp(20px, 2.5vw, 24px);
+  padding: 6px 0;
+  width: 100%; 
+  outline: none;
+  transition: border-bottom-color 0.3s ease; 
+  &:focus {
+    border-bottom: 2px solid #654321;
+  }
+}
+
+.muiTextarea {
+  background: transparent;
+  border: 1px solid #654321; 
+  font-size: 1rem;
+  padding: 6px 0;
+  width: 100%; 
+  outline: none;
+  transition: border-color 0.3s ease; 
+  resize: none; 
+
+  &:focus {
+    border: 2px solid #654321;
+  }
 }
 
 .inputText {
-  font-family: 'Epilogue', sans-serif;
-  margin-bottom: 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #654321; 
   font-size: clamp(20px, 2.5vw, 24px);
+  padding: 6px 0;
+  width: 100%; 
+  outline: none; 
+  margin-bottom: 20px;
+  transition: border-bottom-color 0.3s ease; 
+
+  &:focus {
+    border-bottom: 3px solid #654321; 
+  }
 }
+
 
 .questionText {
   font-weight: unset;
   font-family: 'Epilogue', sans-serif;
   margin-bottom: 10px;
   font-size: clamp(20px, 2.5vw, 24px);
-  margin-bottom: 35px;
+  margin-bottom: 20px;
   line-height: 32px;
 }
 
@@ -305,7 +354,6 @@ input::placeholder {
 
 .fork-text-area-container {
   width: 100%;
-  /* Ensure the container takes full width */
 }
 
 .buttons-right {
