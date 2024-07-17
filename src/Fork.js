@@ -48,34 +48,42 @@ const Fork = ({ host_development }) => {
 
   return (
     <div className="header-content bg_style">
-      <div className="fork-text-area-container">
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <h2>Share Your Story</h2>
-      <div>
-        <textarea
-          className="inputText"
-          type="text"
-          name={`question`}
-          value={story}
-          onChange={(e) => setStory(e.target.value)}
-          maxLength={1000}
-          rows={10}
-        />
-      </div>
-      <div className="fork-button-container">
-        <button className={"button-text"} onClick={handleSurvey}>
-          Complete Survey{" "}
-        </button>
-        <button className={"button-text"} onClick={handleResults}>
-          See My Score
-        </button>
+      <div className="fork-section">
+        <div className="fork-text-area-container">
+          <div className="fork-email">
+            <label htmlFor="email" className="email-label">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              className="muiInput"
+              placeholder="Type your email here"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+        </div>
+        <h2>Share Your Story</h2>
+        <div>
+          <textarea
+            className="muiTextarea"
+            type="text"
+            name="question"
+            value={story}
+            onChange={(e) => setStory(e.target.value)}
+            maxLength={1000}
+            rows={10}
+          />
+        </div>
+        <div className="fork-button-container">
+          <button className={"button-text"} onClick={handleSurvey}>
+            Complete Survey{" "}
+          </button>
+          <button className={"button-text"} onClick={handleResults}>
+            See My Score
+          </button>
+        </div>
       </div>
     </div>
   );

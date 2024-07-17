@@ -75,6 +75,7 @@ const QuestionRenderer = ({
         <input
           key={`input-${question.num}`}
           className="inputText"
+          placeholder="Type your answer here.."
           type="text"
           name={`question-${question.num}`}
           value={localText}

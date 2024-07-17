@@ -17,4 +17,11 @@ code {
   display: inline-block;
   line-height: 0;
   opacity: 1;
+  display: flex;
+  justify-content: center;
+}
+.fork-section{
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
 }
