@@ -58,7 +58,7 @@ const Fork = ({ host_development }) => {
               type="email"
               id="email"
               className="muiInput"
-              placeholder="Type your email here"
+              placeholder="Type your email here.."
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
