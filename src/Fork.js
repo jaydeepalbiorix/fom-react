@@ -11,17 +11,9 @@ const Fork = ({ host_development }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission, e.g., send data to server
     console.log("Email:", email);
     console.log("Story:", story);
   };
-  /*const handleBlur = (e) => {
-    handleTextOtherChange(set_id, question.num, e.target.value);
-  };
-
-  const handleButtonClick = () => {
-    handleTextOtherChange(set_id, question.num, localText);
-  };*/
   const submitStoryText = async (email, story) => {
     console.log("save ", email, "story", story);
     try {
@@ -41,9 +33,6 @@ const Fork = ({ host_development }) => {
   const handleResults = () => {
     submitStoryText(email, story);
     navigate("/results");
-  };
-  const handleCancel = () => {
-    navigate("/"); // Navigate back to the home page or another route
   };
 
   return (

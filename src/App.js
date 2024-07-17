@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, useLocation, useParams } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 import SurveyQuestions from "./SurveyQuestions.js";
@@ -10,28 +10,15 @@ import AdminPage from "./Admin.js";
 import PasswordProtectedRoute from "./PasswordProtectedRoute.js";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
-import FormReact from "./FormReact.jsx";
 
 const questionsPerPage = 1;
-
-function isLocalStorageAvailable() {
-  var test = "test";
-  try {
-    localStorage.setItem(test, test);
-    localStorage.removeItem(test);
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
 
 function ResultsWrapper(props) {
   const { report_uuid } = useParams();
   return <Results {...props} userUUID={report_uuid} />;
 }
-
 function App() {
-  const [searchParams, setSearchParams] = useSearchParams(); // Use the hook to access search parameters
+  const [searchParams, setSearchParams] = useSearchParams();
   const [userUUID, setUserUUID] = useState("");
   const [isHeaderSet, setIsHeaderSet] = useState(false);
   const [answers, setAnswers] = useState({});
@@ -39,13 +26,12 @@ function App() {
   const [answeredCount, setAnsweredCount] = useState(0);
   const [allQuestions, setAllQuestions] = useState([]);
   const [currentQuestions, setCurrentQuestions] = useState([]);
-  const [set_id, setSetId] = useState(1); // which set of questions to use
+  const [set_id, setSetId] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0); // set dynamically based on fetched data
+  const [totalPages, setTotalPages] = useState(0);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [enteredPassword, setEnteredPassword] = useState("");
 
-  const location = useLocation();
   const front_end_port = window.location.port;
   let host_development = "";
   if (front_end_port === "3000") {
@@ -72,9 +58,8 @@ function App() {
       if (userUUID) {
         try {
           localStorage.setItem("userUUID", userUUID);
-        } catch (error) { }
+        } catch (error) {}
       } else {
-        // If not present in URL, try getting from localStorage
         const storeUUID = localStorage.getItem("userUUID");
         if (storeUUID) {
           setUserUUID(storeUUID);
@@ -88,7 +73,7 @@ function App() {
       }
     };
     ensureUserUUID(searchParams);
-  }, [searchParams]); // only runs when searchParams changes
+  }, [searchParams]);
 
   useEffect(() => {
     if (userUUID) {
@@ -123,7 +108,7 @@ function App() {
             "Error fetching questions, got string instead of Array"
           );
         }
-        data[3].isForty = true
+        data[3].isForty = true;
         setAllQuestions(data);
       } catch (error) {
         console.error("Error fetching questions:", error);
@@ -140,7 +125,6 @@ function App() {
   useEffect(() => {
     const fetchAnswers = async () => {
       if (!userUUID) {
-        //console.error("FETCH answers SKIPPED, no user");
         return;
       } else {
         const response = await axios.get(
@@ -174,7 +158,6 @@ function App() {
             }
           }
         } catch (error) {
-          // Handle errors (e.g., network error, server error)
           console.error("Error fetching evidence data:", error);
         }
       }
@@ -203,7 +186,6 @@ function App() {
     <main className="App">
       <Routes>
         <Route path="/" element={<Intro />} />
-        <Route path="/form-react" element={<FormReact />} />
         <Route
           path="/fork"
           element={<Fork host_development={host_development} />}

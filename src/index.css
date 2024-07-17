@@ -1,10 +1,8 @@
-
 code {
-  font-family: 'Epilogue', 'Courier New',
-    monospace;
+  font-family: "Epilogue", "Courier New", monospace;
 }
 
-.bg_style{
+.bg_style {
   background-image: url(./assets/Images/background-image.jpg);
   background-color: rgb(224, 201, 180);
   background-position: center top;
@@ -20,7 +18,8 @@ code {
   display: flex;
   justify-content: center;
 }
-.fork-section{
+
+.fork-section {
   display: flex;
   flex-direction: column;
   gap: 35px;

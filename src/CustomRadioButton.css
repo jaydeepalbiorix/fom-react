@@ -23,9 +23,7 @@
 .custom-radio {
   display: inline-block;
   width: 20px;
-  /* Adjust size as needed */
   height: 20px;
-  /* Adjust size as needed */
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 50%;
@@ -42,10 +40,7 @@
   content: "";
   display: block;
   width: 8px;
-  /* Adjust size as needed */
   height: 8px;
-  /* Adjust size as needed */
-  /* background-color: white; */
   border-radius: 50%;
   position: absolute;
   top: 50%;
