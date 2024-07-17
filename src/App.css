@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
 
-html *
-{
-   font-family: "Epilogue", sans-serif !important;
+html * {
+  font-family: "Epilogue", sans-serif !important;
 }
 
 @keyframes slideInFromTop {
@@ -157,7 +156,7 @@ html *
   font-family: 'Epilogue', sans-serif;
   margin-bottom: 10px;
   font-size: clamp(20px, 2.5vw, 24px);
-  margin-bottom: 35px;
+  margin-bottom: 24px;
   line-height: 32px;
 }
 
@@ -329,7 +328,7 @@ input::placeholder {
   justify-content: center;
   transition: background-color 0.3s, transform 0.3s;
   transform: rotate(90deg);
-  font-size: 30PX;                                                      
+  font-size: 30PX;
 }
 
 .button-wrapper {
@@ -437,7 +436,7 @@ input::placeholder {
   padding-top: 24px;
 }
 
-.fw-normal{
+.fw-normal {
   font-weight: normal;
 }
 
@@ -447,7 +446,7 @@ input::placeholder {
   }
 }
 
-.efgzf2FVkj0J6KSkbf1U{
+.efgzf2FVkj0J6KSkbf1U {
   display: flex;
   align-items: center;
 }
@@ -455,11 +454,43 @@ input::placeholder {
 .z5__aAxFZInh8wrohNDl {
   width: 500px !important;
   padding: 24px;
-    padding-bottom: 12px;
+  padding-bottom: 12px;
 }
 
 .z5__aAxFZInh8wrohNDl .nS84Rl2ZGrEeI4vt5Evq {
   max-height: none;
   overflow: unset;
   padding: 16px 0;
+}
+
+.css-13cymwt-control {
+  border: 0 !important;
+  background: transparent !important;
+  border-bottom: 1px solid gray !important;
+  border-radius: 00 !important;
+}
+
+.css-t3ipsp-control {
+  border: 0 !important;
+  background: transparent !important;
+  border-bottom: 1px solid gray !important;
+  border-radius: 00 !important;
+  box-shadow: none !important;
+}
+
+.css-1dimb5e-singleValue {
+  font-size: 20px;
+  color: rgba(46, 44, 44, 0.7) !important;
+}
+
+.css-1u9des2-indicatorSeparator {
+  background-color: transparent !important;
+}
+
+.css-tr4s17-option{
+  background-color: #ffa500 !important;
+}
+
+.css-d7l1ni-option{
+  background-color: rgba(250, 213, 142, 0.502) !important;
 }

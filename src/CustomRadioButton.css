@@ -10,7 +10,8 @@
   cursor: pointer;
   margin-bottom: 10px;
   gap: 10px;
-  color: rgba(46, 44, 44, 0.8)
+  color: rgba(46, 44, 44, 0.7);
+  font-size: 20px;
 }
 
 .radio-input {
