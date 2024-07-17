@@ -10,7 +10,6 @@ import AdminPage from "./Admin.js";
 import PasswordProtectedRoute from "./PasswordProtectedRoute.js";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
-import FormReact from "./FormReact.jsx";
 
 const questionsPerPage = 1;
 
@@ -187,7 +186,6 @@ function App() {
     <main className="App">
       <Routes>
         <Route path="/" element={<Intro />} />
-        <Route path="/form-react" element={<FormReact />} />
         <Route
           path="/fork"
           element={<Fork host_development={host_development} />}

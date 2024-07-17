@@ -29,7 +29,8 @@ const Intro = () => {
         <div class="column">
           <div class="main-container ">
             <h2 className="que-title">Are you in a cult?</h2>
-            <h3 className="fw-normal">
+            <h3 className="fw-normal"
+             style={{marginBottom:"10px"}}>
               Evaluate your now by using Dr. Steven Hassan's BITE model
               <sup>&trade;</sup> for Authoritarian Control.
             </h3>
