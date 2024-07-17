@@ -25,8 +25,9 @@ const Intro = () => {
 
   return (
     <header className="App-header">
-      <div className="parent-container">
-        <div className="main-container">
+      <div class="container">
+        <div class="column">
+        <div class="main-container ">
           <h2 className="que-title">Are you in a cult?</h2>
           <h3 className="fw-normal">
             Evaluate your now by using Dr. Steven Hassan's BITE model
@@ -78,10 +79,13 @@ const Intro = () => {
               />
             </svg>
             <span className="start-item">Take X minutes </span>
+            </div>
           </div>
         </div>
-        <div className="img-container">
-          <img src="https://images.typeform.com/images/UJJfTEr2Kd5p/image/default-firstframe.png" />         </div>
+        <div class="column">
+          
+          <img src="https://bite-model-app-stage-6e97f85a4713.herokuapp.com/static/Steve_hand.png" alt="Sample Image" />
+        </div>
       </div>
     </header>
   );

@@ -154,152 +154,93 @@ const SurveyQuestions = ({
     submitAnswerRadio(set_id, question_id, answer_id);
   };
 
-  const onTextOtherChange = (set_id, questionId, answer) => {
+  const onTextOtherChange = (set_id, questionId, answer, isOkButton) => {
     handleTextOtherChange(set_id, questionId, answer);
-    handleNext();
-  };
+    if (isOkButton) {
+      handleNext();
+    }
+    };
 
-  const handleTextOtherChange = (set_id, question_id, text) => {
-    if (text === undefined) return;
-    setTextResponses((prevAnswers) => {
-      const exists = prevAnswers.some(
-        (answer) => answer.question_id === question_id
-      );
-      let newAnswers;
-      if (exists) {
-        newAnswers = prevAnswers.map((answer) =>
-          answer.question_id === question_id
-            ? { ...answer, answer_other: text }
-            : answer
+    const handleTextOtherChange = (set_id, question_id, text) => {
+      if (text === undefined) return;
+      setTextResponses((prevAnswers) => {
+        const exists = prevAnswers.some(
+          (answer) => answer.question_id === question_id
         );
-      } else {
-        newAnswers = [
-          ...prevAnswers,
-          { question_id: question_id, answer_other: text },
-        ];
-      }
-      return newAnswers;
-    });
-    submitAnswerOtherText(set_id, question_id, text);
-  };
-
-  useEffect(() => {
-    if (visibility) {
-      return;
-    }
-    const handleScroll = (event) => {
-      event.preventDefault();
-
-      const delta = Math.sign(event.deltaY);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-
-      scrollTimeoutRef.current = setTimeout(() => {
-        if (delta === -1) {
-          setKeyPress("upKey");
-          onPageChange((currentPage) => Math.max(currentPage - 1, 1));
-        } else if (delta === 1) {
-          let advance_count = 1;
-          setKeyPress("downKey");
-          onPageChange((currentPage) =>
-            Math.min(currentPage + advance_count, totalPages)
+        let newAnswers;
+        if (exists) {
+          newAnswers = prevAnswers.map((answer) =>
+            answer.question_id === question_id
+              ? { ...answer, answer_other: text }
+              : answer
           );
+        } else {
+          newAnswers = [
+            ...prevAnswers,
+            { question_id: question_id, answer_other: text },
+          ];
         }
-      }, 150);
+        return newAnswers;
+      });
+      submitAnswerOtherText(set_id, question_id, text);
     };
 
-    const divElement = divRef.current;
-    if (divElement) {
-      divElement.addEventListener("wheel", handleScroll);
-    }
+    useEffect(() => {
+      if (visibility) {
+        return;
+      }
+      const handleScroll = (event) => {
+        event.preventDefault();
 
-    // Clean up the event listener when component unmounts
-    return () => {
+        const delta = Math.sign(event.deltaY);
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+
+        scrollTimeoutRef.current = setTimeout(() => {
+          if (delta === -1) {
+            setKeyPress("upKey");
+            onPageChange((currentPage) => Math.max(currentPage - 1, 1));
+          } else if (delta === 1) {
+            let advance_count = 1;
+            setKeyPress("downKey");
+            onPageChange((currentPage) =>
+              Math.min(currentPage + advance_count, totalPages)
+            );
+          }
+        }, 150);
+      };
+
+      const divElement = divRef.current;
       if (divElement) {
-        divElement.removeEventListener("wheel", handleScroll);
+        divElement.addEventListener("wheel", handleScroll);
       }
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-    };
-  }, []);
 
-  return (
-    <>
-      <ProgressBar answeredCount={answeredCount} />
-      <div className="main-content bg_style-main-content" ref={divRef}>
-        {visibility ? (
-          <div>
-            <CustomPopup onClose={popupCloseHandler} show={visibility}>
-              <h3 style={{ marginBottom: '50px' }}> Do you want to move ahead? </h3>
-              <div className="button-wrapper">
-                <button className={"button-text"}
-                  onClick={popupCloseHandler}>
-                  Continue
-                </button>
+      // Clean up the event listener when component unmounts
+      return () => {
+        if (divElement) {
+          divElement.removeEventListener("wheel", handleScroll);
+        }
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+      };
+    }, []);
 
-                <button
-                  className={"button-text"}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleResults();
-                  }}
-                >
-                  Answers | Results
-                </button>
-              </div>
-            </CustomPopup>
-          </div>
-        ) : (
-          <>
-            <div className="content-wrapper">
-              {currentQuestions?.map((question, qindex) => {
-                return (
-                  <div
-                    key={question.num}
-                    className={`question ${question.isForty
-                      ? ""
-                      : keyPress === "upKey"
-                        ? "animationDesignUp"
-                        : "animationDesignDown"
-                      }`}
-                  >
-                    <div className="questionText">{`${currentPage})  ${question.text}`}</div>
-                    <RadioDropdown
-                      question={question}
-                      answers={answers}
-                      handleAnswerChange={onAnswerChange}
-                      textResponses={textResponses}
-                      handleTextOtherChange={onTextOtherChange}
-                      set_id={set_id}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-            <div className="pagination-controls">
-              <div className="button-container">
-                <div className="answered-count"> Answered: {answeredCount}</div>
-                <div className="buttons-right">
-                  <button
-                    className="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handlePrevious();
-                    }}
-                  >
-                   {"<"}
+    return (
+      <>
+        <ProgressBar answeredCount={answeredCount} />
+        <div className="main-content bg_style-main-content" ref={divRef}>
+          {visibility ? (
+            <div>
+              <CustomPopup onClose={popupCloseHandler} show={visibility}>
+                <h3 style={{ marginBottom: '50px' }}> Do you want to move ahead? </h3>
+                <div className="button-wrapper">
+                  <button className={"button-text"}
+                    onClick={popupCloseHandler}>
+                    Continue
                   </button>
-                  <button
-                    className="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleNext();
-                    }}
-                  >
-                   {">"}
-                  </button>
+
                   <button
                     className={"button-text"}
                     onClick={(e) => {
@@ -310,13 +251,74 @@ const SurveyQuestions = ({
                     Answers | Results
                   </button>
                 </div>
-              </div>
+              </CustomPopup>
             </div>
-          </>
-        )}
-      </div>
-    </>
-  );
-};
+          ) : (
+            <>
+              <div className="content-wrapper">
+                {currentQuestions?.map((question, qindex) => {
+                  return (
+                    <div
+                      key={question.num}
+                      className={`question ${question.isForty
+                        ? ""
+                        : keyPress === "upKey"
+                          ? "animationDesignUp"
+                          : "animationDesignDown"
+                        }`}
+                    >
+                      <div className="questionText">{`${currentPage})  ${question.text}`}</div>
+                      <RadioDropdown
+                        question={question}
+                        answers={answers}
+                        handleAnswerChange={onAnswerChange}
+                        textResponses={textResponses}
+                        handleTextOtherChange={onTextOtherChange}
+                        set_id={set_id}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="pagination-controls">
+                <div className="button-container">
+                  <div className="answered-count"> Answered: {answeredCount}</div>
+                  <div className="buttons-right">
+                    <button
+                      className="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlePrevious();
+                      }}
+                    >
+                      {"<"}
+                    </button>
+                    <button
+                      className="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNext();
+                      }}
+                    >
+                      {">"}
+                    </button>
+                    <button
+                      className={"button-text"}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleResults();
+                      }}
+                    >
+                      Answers | Results
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </>
+    );
+  };
 
-export default SurveyQuestions;
+  export default SurveyQuestions;

@@ -30,7 +30,7 @@ const QuestionRenderer = ({
   };
 
   const handleButtonClick = () => {
-    handleTextOtherChange(set_id, question.num, localText);
+    handleTextOtherChange(set_id, question.num, localText,'buttonClicked');
   };
 
   useEffect(() => {
@@ -73,6 +73,7 @@ const QuestionRenderer = ({
     return (
       <>
         <input
+          autocomplete="off"
           key={`input-${question.num}`}
           className="inputText"
           placeholder="Type your answer here.."
