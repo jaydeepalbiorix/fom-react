@@ -32,7 +32,7 @@ const SurveyQuestions = ({
     setVisibility(false);
   };
 
-  useEffect(() => {}, [answers]);
+ 
 
   useEffect(() => {
     if (allQuestions && allQuestions.length > 0) {
@@ -135,6 +135,7 @@ const SurveyQuestions = ({
   const onTextOtherChange = (set_id, questionId, answer, isOkButton) => {
     handleTextOtherChange(set_id, questionId, answer);
     if (isOkButton) {
+      handleAnswerChange(set_id, questionId, answer);
       handleNext();
     }
   };

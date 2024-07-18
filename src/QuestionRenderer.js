@@ -83,7 +83,7 @@ const QuestionRenderer = ({
           onChange={handleLocalChange}
           onBlur={handleBlur}
         />
-        <button className={"button-text"} onClick={handleButtonClick}>
+        <button className="button-text" onClick={handleButtonClick}>
           Ok
         </button>
       </>

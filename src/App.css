@@ -181,9 +181,10 @@ html * {
   outline: none;
   margin-bottom: 20px;
   transition: border-bottom-color 0.3s ease;
+  color: rgba(46, 44, 44, 0.7);
 
   &:focus {
-    border-bottom: 3px solid #654321;
+    border-bottom: 1px solid #654321;
   }
 }
 
@@ -357,21 +358,16 @@ input::placeholder {
   border: none;
   border-radius: 4px;
   height: 40px;
-  padding: 6px 20px;
+  padding: 10px 15px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s, transform 0.3s;
   white-space: normal;
-  font-size: 4vw;
+  font-size: 20px;
 }
 
-@media only screen and (orientation: landscape) {
-  .button-text {
-    font-size: 3vh;
-  }
-}
 
 .answered-count {
   font-weight: bold;
