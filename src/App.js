@@ -108,7 +108,7 @@ function App() {
             "Error fetching questions, got string instead of Array"
           );
         }
-        data[3].isForty = true;
+        data[40].isForty = true;
         setAllQuestions(data);
       } catch (error) {
         console.error("Error fetching questions:", error);

@@ -26,7 +26,7 @@ const Intro = () => {
   return (
     <header className="App-header">
       <div class="container">
-        <div class="column">
+        <div class="column column-70">
           <div class="main-container ">
             <h2 className="que-title">Are you in a cult?</h2>
             <h3 className="fw-normal"
@@ -83,7 +83,7 @@ const Intro = () => {
             </div>
           </div>
         </div>
-        <div class="column">
+        <div class="column column-30">
           <img
             src="https://bite-model-app-stage-6e97f85a4713.herokuapp.com/static/Steve_hand.png"
             alt="Sample Image"

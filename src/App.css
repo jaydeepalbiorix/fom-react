@@ -480,8 +480,15 @@ body {
   overflow: hidden;
 }
 
+.column-30 {
+  flex: 0 0 30%;
+}
+
+.column-70 {
+  flex: 0 0 70%;
+}
+
 .column {
-  flex: 1;
   box-sizing: border-box;
 }
 
@@ -490,6 +497,7 @@ body {
   height: 100%;
   object-position: 50% 50%;
   min-height: auto;
+  object-fit: cover;
 }
 
 @media (max-width: 600px) {
