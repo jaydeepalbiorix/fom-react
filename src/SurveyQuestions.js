@@ -57,7 +57,7 @@ const SurveyQuestions = ({
     const start = (advance + currentPage - 1) * questionsPerPage;
     const end = start + questionsPerPage;
     const qlist = allQuestions.slice(start, end);
-    if (qlist[0].isForty) {
+    if (qlist[0]?.isForty) {
       setVisibility(true);
     }
   }, [currentPage]);

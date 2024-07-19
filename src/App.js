@@ -33,7 +33,7 @@ function App() {
   const [enteredPassword, setEnteredPassword] = useState("");
 
   const front_end_port = window.location.port;
-  let host_development = "";
+  let host_development = "https://bite-model-app-stage-6e97f85a4713.herokuapp.com";
   if (front_end_port === "3000") {
     host_development =
       "https://bite-model-app-stage-6e97f85a4713.herokuapp.com";
