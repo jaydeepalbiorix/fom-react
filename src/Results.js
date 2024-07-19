@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import ShareComponent from "./ShareComponent.js";
 import SVGContainer from "./SVGContainer.js";
-import PDFGenerator from "./PDFGenerator.js";
+import PDFGenerator from "./components/PDF/PDFGenerator.js";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import { useNavigate } from "react-router-dom";
