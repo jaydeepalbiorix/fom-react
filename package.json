@@ -17,7 +17,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
-    "react-router-dom": "^6.23.1",  
+    "react-router-dom": "^6.23.1",
     "react-scripts": "^5.0.1",
     "react-select": "^5.8.0",
     "react-share": "^5.1.0",
@@ -74,5 +74,6 @@
     "copy-webpack-plugin": "^12.0.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.2"
-  }
+  },
+  "proxy": "https://bite-model-app-stage-6e97f85a4713.herokuapp.com"
 }
