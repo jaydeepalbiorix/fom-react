@@ -4,6 +4,7 @@ import axios from "axios";
 import RadioDropdown from "./RadioDropdown.js";
 import ProgressBar from "./ProgressBar.js";
 import CustomPopup from "./components/CustomPopup";
+import logo from "../src/assets/Images/logout.png";
 
 const SurveyQuestions = ({
   currentPage,
@@ -210,8 +211,9 @@ const SurveyQuestions = ({
       <ProgressBar answeredCount={answeredCount} />
       <div className="main-content bg_style-main-content" ref={divRef}>
         {visibility ? (
-          <div>
+          <div className="survey-popup">
             <CustomPopup onClose={popupCloseHandler} show={visibility}>
+              <img src={logo} alt="logout" className="continue-logo"/>
               <h3 style={{ marginBottom: "50px" }}>
                 {" "}
                 Do you want to move ahead?{" "}

@@ -577,7 +577,7 @@ function SVGContainer({
               </tspan>
             </>
           )}
-          <text
+          {/* <text
             x={svgWidth / 2}
             y={fullHeight + 60}
             textAnchor="middle"
@@ -588,7 +588,7 @@ function SVGContainer({
             fill="black"
           >
             Your Answers
-          </text>
+          </text> */}
           {sections.behavior}
           {sections.information}
           {sections.thought}

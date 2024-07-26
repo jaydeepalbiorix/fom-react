@@ -422,6 +422,7 @@ const Results = ({
 
   const Section = ({ title, questions }) => (
     <>
+     
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -519,6 +520,9 @@ const Results = ({
         </div> */}
         <div className="results-wrapper">
           <div className="answer-container">
+            <div className="answer-title">
+            Your Answers
+            </div>
             <Section
               title="Behavior Questions"
               questions={groupedQuestions["B"]}
@@ -536,13 +540,13 @@ const Results = ({
               questions={groupedQuestions["E"]}
             />
           </div>
-          <div>
+          {/* <div>
             <img
               class="card__img-desktop"
               src="https://raw.githubusercontent.com/MizAndhre/FAQ-accordion-card/2ff2a02d093554f14d0390a409e825669313a16e/images/illustration-woman-online-desktop.svg"
               alt="Woman online desktop"
             />
-          </div>
+          </div> */}
         </div>
         <div style={{ position: "absolute", top: "-9999px", left: "-9999px" }}>
           <PDFGenerator
