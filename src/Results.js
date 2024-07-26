@@ -6,6 +6,8 @@ import PDFGenerator from "./components/PDF/PDFGenerator.js";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import { useNavigate } from "react-router-dom";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import "./Results.css";
 
 const Results = ({
@@ -416,6 +418,34 @@ const Results = ({
     return metrics.width;
   };
 
+  <Accordion></Accordion>;
+
+  const Section = ({ title, questions }) => (
+    <>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2-content"
+          id="panel2-header"
+        >
+          <h2 className="question-section-h2">{title}</h2>
+        </AccordionSummary>
+        <AccordionDetails>
+          <div className="question-section">
+            {questions.map((q, index) => (
+              <div key={q.num} className="question-container">
+                <p className="question-text">{q.text}</p>
+                <strong className="answer-text">
+                  {q.answer_text ? q.answer_text : "No answer"}
+                </strong>
+              </div>
+            ))}
+          </div>
+        </AccordionDetails>
+      </Accordion>
+    </>
+  );
+
   return (
     <div className="results-container">
       <div className="report-controls" ref={reportControlsRef}>
@@ -449,7 +479,7 @@ const Results = ({
           loading={loading}
           ref={svgContainerRef}
         />
-        <div className="answer-container">
+        {/* <div className="answer-container">
           <p>
             <strong>Behavior questions</strong>
           </p>
@@ -486,6 +516,33 @@ const Results = ({
               <strong> {q.answer_text ? q.answer_text : " No answer"}</strong>
             </div>
           ))}
+        </div> */}
+        <div className="results-wrapper">
+          <div className="answer-container">
+            <Section
+              title="Behavior Questions"
+              questions={groupedQuestions["B"]}
+            />
+            <Section
+              title="Information Questions"
+              questions={groupedQuestions["I"]}
+            />
+            <Section
+              title="Thought Questions"
+              questions={groupedQuestions["T"]}
+            />
+            <Section
+              title="Emotion Questions"
+              questions={groupedQuestions["E"]}
+            />
+          </div>
+          <div>
+            <img
+              class="card__img-desktop"
+              src="https://raw.githubusercontent.com/MizAndhre/FAQ-accordion-card/2ff2a02d093554f14d0390a409e825669313a16e/images/illustration-woman-online-desktop.svg"
+              alt="Woman online desktop"
+            />
+          </div>
         </div>
         <div style={{ position: "absolute", top: "-9999px", left: "-9999px" }}>
           <PDFGenerator

@@ -529,13 +529,15 @@ function SVGContainer({
               </tspan>
             </tspan>
           </text>
-          <image
+          {/* <image
             x={imageX}
             y={imageY}
             width={imageWidth}
             height={imageHeight}
             href="/static/logo512.png"
-          />
+          /> */}
+         
+
           {svgWidth < 500 ? (
             <>
               <tspan x={svgWidth / 2} dy="0">
