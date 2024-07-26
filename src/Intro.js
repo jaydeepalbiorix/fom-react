@@ -41,7 +41,7 @@ const Intro = () => {
               <button className="start-button" onClick={handleStartClick}>
                 Start Now
               </button>
-              <span>
+              <span className="btn-text">
                 {" "}
                 press <b>Enter&nbsp;&lt;</b>
               </span>

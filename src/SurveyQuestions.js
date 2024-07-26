@@ -57,7 +57,7 @@ const SurveyQuestions = ({
     const start = (advance + currentPage - 1) * questionsPerPage;
     const end = start + questionsPerPage;
     const qlist = allQuestions.slice(start, end);
-    if (qlist[0]?.isForty) {
+    if (qlist[0]?.showPopUp) {
       setVisibility(true);
     }
   }, [currentPage]);
@@ -241,7 +241,7 @@ const SurveyQuestions = ({
                   <div
                     key={question.num}
                     className={`question ${
-                      question.isForty
+                      question.showPopUp
                         ? ""
                         : keyPress === "upKey"
                         ? "animationDesignUp"

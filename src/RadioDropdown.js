@@ -32,7 +32,7 @@ const RadioDropdown = ({
   };
 
   return (
-    <div className={` ${question.isForty ? "isVisibleSelect" : ""}`}>
+    <div className={` ${question.showPopUp ? "isVisibleSelect" : ""}`}>
       <QuestionRenderer
         key={question.num}
         question={question}
