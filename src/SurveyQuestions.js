@@ -33,8 +33,6 @@ const SurveyQuestions = ({
     setVisibility(false);
   };
 
- 
-
   useEffect(() => {
     if (allQuestions && allQuestions.length > 0) {
       let prevPage = currentPage - 2;
@@ -118,7 +116,9 @@ const SurveyQuestions = ({
   };
 
   const handleAnswerChange = (set_id, question_id, answer_id) => {
-    let category_id = allQuestions[question_id]?.category;
+    let category_id = allQuestions.find(
+      (question) => question.num === question_id
+    )?.category;
     setAnswers((prevAnswers) => {
       return {
         ...prevAnswers,
@@ -213,7 +213,7 @@ const SurveyQuestions = ({
         {visibility ? (
           <div className="survey-popup">
             <CustomPopup onClose={popupCloseHandler} show={visibility}>
-              <img src={logo} alt="logout" className="continue-logo"/>
+              <img src={logo} alt="logout" className="continue-logo" />
               <h3 style={{ marginBottom: "50px" }}>
                 {" "}
                 Do you want to move ahead?{" "}
