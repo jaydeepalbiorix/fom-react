@@ -4,6 +4,7 @@ import axios from "axios";
 import RadioDropdown from "./RadioDropdown.js";
 import ProgressBar from "./ProgressBar.js";
 import CustomPopup from "./components/CustomPopup";
+import logo from "../src/assets/Images/logout.png";
 
 const SurveyQuestions = ({
   currentPage,
@@ -31,8 +32,6 @@ const SurveyQuestions = ({
   const popupCloseHandler = () => {
     setVisibility(false);
   };
-
- 
 
   useEffect(() => {
     if (allQuestions && allQuestions.length > 0) {
@@ -117,7 +116,9 @@ const SurveyQuestions = ({
   };
 
   const handleAnswerChange = (set_id, question_id, answer_id) => {
-    let category_id = allQuestions[question_id]?.category;
+    let category_id = allQuestions.find(
+      (question) => question.num === question_id
+    )?.category;
     setAnswers((prevAnswers) => {
       return {
         ...prevAnswers,
@@ -210,8 +211,9 @@ const SurveyQuestions = ({
       <ProgressBar answeredCount={answeredCount} />
       <div className="main-content bg_style-main-content" ref={divRef}>
         {visibility ? (
-          <div>
+          <div className="survey-popup">
             <CustomPopup onClose={popupCloseHandler} show={visibility}>
+              <img src={logo} alt="logout" className="continue-logo" />
               <h3 style={{ marginBottom: "50px" }}>
                 {" "}
                 Do you want to move ahead?{" "}

@@ -516,3 +516,21 @@ body {
   height: 100%;
   background-image: url(./assets/Images/background-image.jpg);
 }
+.continue-logo {
+  display: block;
+  margin: 0px auto 30px auto;
+}
+
+.survey-popup .z5__aAxFZInh8wrohNDl{
+    min-height: 350px;
+    max-height: 350px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.survey-popup .nS84Rl2ZGrEeI4vt5Evq{
+  max-height: unset !important;
+  overflow-y: unset !important;
+}

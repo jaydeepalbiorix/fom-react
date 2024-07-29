@@ -33,7 +33,7 @@ function App() {
   const [enteredPassword, setEnteredPassword] = useState("");
 
   const front_end_port = window.location.port;
-  let host_development = "https://bite-model-app-stage-6e97f85a4713.herokuapp.com";
+  let host_development = "";
   if (front_end_port === "3000") {
     host_development =
       "https://bite-model-app-stage-6e97f85a4713.herokuapp.com";
@@ -89,7 +89,7 @@ function App() {
     const fetchQuestions = async () => {
       try {
         const response = await axios.get(`${host_development}/question_set/1`);
-        const data = response.data;
+        const res = response.data;
         if (
           Object.prototype.toString.call(response.data) === "[object String]"
         ) {
@@ -108,6 +108,7 @@ function App() {
             "Error fetching questions, got string instead of Array"
           );
         }
+        const data = res.filter((_, index) => index !== 9);
         data[20].showPopUp = true;
         data[40].showPopUp = true;
         setAllQuestions(data);
@@ -168,7 +169,12 @@ function App() {
 
   useEffect(() => {
     const nonZeroCount = Object.values(answers).reduce((count, item) => {
-      return item.answer_id !== 0 ? count + 1 : count;
+      if (item.category!=='D') {
+        
+        return item.answer_id !== 0 ? count + 1 : count;
+      }else{
+        return count
+      }
     }, 0);
     setAnsweredCount(nonZeroCount);
     if (nonZeroCount > 1) {

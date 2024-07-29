@@ -529,13 +529,15 @@ function SVGContainer({
               </tspan>
             </tspan>
           </text>
-          <image
+          {/* <image
             x={imageX}
             y={imageY}
             width={imageWidth}
             height={imageHeight}
             href="/static/logo512.png"
-          />
+          /> */}
+         
+
           {svgWidth < 500 ? (
             <>
               <tspan x={svgWidth / 2} dy="0">
@@ -575,7 +577,7 @@ function SVGContainer({
               </tspan>
             </>
           )}
-          <text
+          {/* <text
             x={svgWidth / 2}
             y={fullHeight + 60}
             textAnchor="middle"
@@ -586,7 +588,7 @@ function SVGContainer({
             fill="black"
           >
             Your Answers
-          </text>
+          </text> */}
           {sections.behavior}
           {sections.information}
           {sections.thought}
