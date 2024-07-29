@@ -109,8 +109,6 @@ function App() {
           );
         }
         const data = res.filter((_, index) => index !== 9);
-        data[20].showPopUp = true;
-        data[40].showPopUp = true;
         setAllQuestions(data);
       } catch (error) {
         console.error("Error fetching questions:", error);

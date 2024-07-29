@@ -37,7 +37,6 @@ const AnswerClass = ({ question, answer, currentY, svgWidth }) => {
   };
 
   if (!question || !answer) {
-    console.log("no answer");
     return null
   };
 

@@ -45,7 +45,6 @@ const Results = ({
         setDivWidth(400);
       }
     }
-    console.log("answers", answers);
   }, [answers]);
 
   useEffect(() => {
@@ -73,15 +72,8 @@ const Results = ({
   const calculateScore = useCallback(async () => {
     if (userUUID && isHeaderSet) {
       try {
-        console.log(
-          "call /get_score user",
-          userUUID,
-          "isHeaderSet",
-          isHeaderSet
-        );
         const response = await axios.get(`${host_development}/get_score/1`);
         const data = response.data;
-        console.log(" got data ", data);
         const total = Math.round(
           data.find((answer) => answer.category === "total")["score"],
           0
@@ -102,18 +94,6 @@ const Results = ({
           data.find((answer) => answer.category === "E")["score"],
           0
         );
-        console.log(
-          "scores",
-          total,
-          "B",
-          b_score,
-          "I",
-          i_score,
-          "T",
-          t_score,
-          "E",
-          e_score
-        );
         setBiteScore([total, b_score, i_score, t_score, e_score]);
       } catch (error) {
         if (error.response) {
@@ -133,27 +113,12 @@ const Results = ({
         }
       }
     } else {
-      console.log(
-        "score skipped header not set",
-        isHeaderSet,
-        "user",
-        userUUID
-      );
     }
   }, [host_development, userUUID, isHeaderSet]);
 
   useEffect(() => {
     calculateScore();
   }, [calculateScore]);
-
-  const handleDone = () => {
-    console.log("handleDone() calling calculateScore()");
-    try {
-      calculateScore();
-    } catch (error) {
-      console.log("error in count non zero", error);
-    }
-  };
 
   useEffect(() => {
     if (isDataLoaded && divWidth > 0) {
@@ -243,7 +208,6 @@ const Results = ({
   }, [answers, questions, textResponses, heights]);
 
   useEffect(() => {
-    console.log("grouped questions", groupedQuestions);
   }, [groupedQuestions]);
 
   useEffect(() => {
@@ -252,17 +216,14 @@ const Results = ({
 
   useEffect(() => {
     setResultLoaded(true);
-    console.log("updatedQuestions", updatedQuestions);
   }, [updatedQuestions]);
 
   const generatePDF = () => {
     setLoading(true);
     const svgRef = hiddenSvgRef.current;
     if (svgRef) {
-      console.log("call html2canvas");
       html2canvas(svgRef, { scale: 1, useCORS: true })
         .then((canvas) => {
-          console.log("canvas", canvas);
           const imgData = canvas.toDataURL("image/svg+xml");
 
           const pdf = new jsPDF({
@@ -281,7 +242,6 @@ const Results = ({
           const lineHeight = 10;
           let imgHeightInPdf;
           let imgWidthInPdf;
-          console.log("pdfWidth", pdfWidth, "imgWidth", imgWidth);
 
           if (imgRatio > pdfRatio) {
             imgHeightInPdf = pdfHeight;
@@ -377,7 +337,6 @@ const Results = ({
           renderSection("Technical questions", groupedQuestions["T"]);
           renderSection("Emotional questions", groupedQuestions["E"]);
 
-          console.log(" save BITE_score.pdf");
           pdf.save("BITE_score.pdf", { returnPromise: true });
           setLoading(false);
         })
@@ -385,7 +344,6 @@ const Results = ({
           setLoading(false);
         });
     } else {
-      console.log("empty svg");
       setLoading(false);
     }
   };

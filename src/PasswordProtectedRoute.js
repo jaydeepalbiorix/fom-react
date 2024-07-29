@@ -19,12 +19,10 @@ const PasswordProtectedRoute = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("submit password", enteredPassword);
       setError("");
       const response = await axios.post(`${host_development}/verify_password`, {
         password: enteredPassword,
       });
-      console.log("password success ", response.data.success);
       if (response.data.success) {
         setIsAuthenticated(true);
         onPasswordSubmit(enteredPassword);

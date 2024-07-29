@@ -38,7 +38,6 @@ const SelectableSquares = ({
 
         const x1 = left + 60;
         const x2 = right - 60;
-        console.log("updateLineWidth left=", left, "right=", right);
 
         const line = svg.querySelector("line");
         const polygons = svg.querySelectorAll("polygon");

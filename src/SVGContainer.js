@@ -116,49 +116,39 @@ function SVGContainer({
       const updatedQuestionsList = questions
         .map((question, qindex) => {
           if (question.answer_text.length < 1) {
-            console.log("missing answer_text", question);
             const matchingAnswer = answersArray.find(
               (answer) => answer.question_id === question.num
             );
             if (question.num === 72)
-              console.log("qq", question, matchingAnswer);
-            if (question.num === 72)
-              console.log(
-                "svg qq",
-                question,
-                "a:",
-                matchingAnswer.answer_text,
-                "match",
-                matchingAnswer
-              );
-            if (matchingAnswer) {
-              let validOptions = [];
-              try {
-                validOptions = JSON.parse(question.valid);
-              } catch (e) {
-                console.error(
-                  "Error parsing valid options for question",
-                  question.num,
-                  e
-                );
-              }
-              let answerText = "";
-              if (question.ftype === "Numeric" && validOptions.length > 0) {
-                answerText =
-                  validOptions[answers[qindex + 1]?.answer_id - 1] || "";
-              } else if (question.ftype === "String") {
-                answerText =
-                  textResponses?.find(
-                    (item) => item.question_id === question.num
-                  )?.answer_other || "";
-              }
-              return {
-                ...question,
-                height: question.height,
-                answer_id: matchingAnswer.answer_id,
-                answer_text: answerText,
-              };
-            }
+              if (question.num === 72)
+                if (matchingAnswer) {
+                  let validOptions = [];
+                  try {
+                    validOptions = JSON.parse(question.valid);
+                  } catch (e) {
+                    console.error(
+                      "Error parsing valid options for question",
+                      question.num,
+                      e
+                    );
+                  }
+                  let answerText = "";
+                  if (question.ftype === "Numeric" && validOptions.length > 0) {
+                    answerText =
+                      validOptions[answers[qindex + 1]?.answer_id - 1] || "";
+                  } else if (question.ftype === "String") {
+                    answerText =
+                      textResponses?.find(
+                        (item) => item.question_id === question.num
+                      )?.answer_other || "";
+                  }
+                  return {
+                    ...question,
+                    height: question.height,
+                    answer_id: matchingAnswer.answer_id,
+                    answer_text: answerText,
+                  };
+                }
           } else {
             return question;
           }
@@ -179,7 +169,6 @@ function SVGContainer({
       });
       setGroupedQuestions(newGroupedQuestions);
       setUpdatedQuestions(updatedQuestionsList);
-      console.log("set svg height ", svgHeight);
       setSvgHeight(svgHeight);
       setIsDataLoaded(true);
     }
@@ -209,14 +198,6 @@ function SVGContainer({
         const width = svgRef.current.getBoundingClientRect().width;
         const endarrow = width - end_arrow_offset;
         const endtext = width - 20;
-        console.log(
-          "Resize: width",
-          width,
-          "endarrow =",
-          endarrow,
-          "endtext",
-          endtext
-        );
       };
 
       window.addEventListener("resize", handleResize);
@@ -536,7 +517,6 @@ function SVGContainer({
             height={imageHeight}
             href="/static/logo512.png"
           /> */}
-         
 
           {svgWidth < 500 ? (
             <>
@@ -677,6 +657,5 @@ function ScoreComponent({ score, svgWidth, starty }) {
 }
 
 const handleInfluenceClick = (text) => {
-  console.log("click", text);
 };
 export default SVGContainer;

@@ -11,11 +11,8 @@ const Fork = ({ host_development }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Story:", story);
   };
   const submitStoryText = async (email, story) => {
-    console.log("save ", email, "story", story);
     try {
       await axios.post(`${host_development}/save_story/`, {
         email,

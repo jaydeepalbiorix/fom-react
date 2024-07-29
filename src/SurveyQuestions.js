@@ -56,9 +56,6 @@ const SurveyQuestions = ({
     const start = (advance + currentPage - 1) * questionsPerPage;
     const end = start + questionsPerPage;
     const qlist = allQuestions.slice(start, end);
-    if (qlist[0]?.showPopUp) {
-      setVisibility(true);
-    }
   }, [currentPage]);
   const handleNext = (advance_count = 1) => {
     setKeyPress("downKey");
@@ -119,6 +116,14 @@ const SurveyQuestions = ({
     let category_id = allQuestions.find(
       (question) => question.num === question_id
     )?.category;
+    if (category_id !== "D") {
+      const count = Object.values(answers).filter(
+        (answer) => answer.category !== "D"
+      ).length;
+      if (count === 20 || count === 40) {
+        setVisibility(true);
+      }
+    }
     setAnswers((prevAnswers) => {
       return {
         ...prevAnswers,

@@ -19,9 +19,7 @@ const PDFTextGenerator = ({ content }) => {
     setLoading(true);
     const pdf = new jsPDF();
 
-    console.log("content", content);
     const lines = textContent.split("\n");
-    console.log("lines", lines);
     lines.forEach((line, index) => {
       pdf.text(line, 10, 10 + index * 10);
     });

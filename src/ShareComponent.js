@@ -15,7 +15,6 @@ function ShareComponent() {
     const newUUID = uuidv4();
     const newShareUrl = `https://bitemodel.com/report/${newUUID}`;
     setShareUrl(newShareUrl);
-    console.log("share url ", newShareUrl);
     return newShareUrl;
   };
   const handleFacebookShare = () => {

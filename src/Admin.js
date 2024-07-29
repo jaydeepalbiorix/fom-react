@@ -28,9 +28,7 @@ const AdminPage = ({ host_development }) => {
 
   const getRowCount = async () => {
     try {
-      console.log("host dev", host_development);
       const response = await axios.get(`${host_development}/count-rows`);
-      console.log("response.data", response.data);
       setRowCount(response.data);
     } catch (err) {
       setError("Error fetching row count. Please try again later.");
