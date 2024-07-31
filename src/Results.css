@@ -51,6 +51,11 @@
   padding-top: 0px;
 }
 
+.share-component {
+  display: flex;
+  gap: 5px
+}
+
 .button-icon {
   background: transparent;
   border: 0;

@@ -416,7 +416,7 @@ const Results = ({
           <button className="report-link" onClick={generatePDF}>
             {loading ? "Generating..." : "Download Your Scores as PDF"}
           </button>
-          <button className="report-link" onClick={() => navigate("/")}>
+          <button className="report-link" onClick={() => navigate("/survey")}>
             Back to Survey
           </button>
         </div>

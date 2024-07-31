@@ -58,7 +58,7 @@ function ShareComponent() {
   };
 
   return (
-    <div>
+    <div className="share-component">
       <MetaTags reportUuid={shareUrl.split("/").pop()} />
       <button className="button-icon" onClick={handleFacebookShare}>
         <FacebookIcon size={32} round />
