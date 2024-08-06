@@ -7,7 +7,7 @@ import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import { useNavigate } from "react-router-dom";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./Results.css";
 
 const Results = ({
@@ -207,8 +207,6 @@ const Results = ({
     }
   }, [answers, questions, textResponses, heights]);
 
-  useEffect(() => {
-  }, [groupedQuestions]);
 
   useEffect(() => {
     setIsDataLoaded(true);
@@ -238,8 +236,8 @@ const Results = ({
           const pdfHeight = pdf.internal.pageSize.getHeight();
           const imgRatio = imgHeight / imgWidth;
           const pdfRatio = pdfHeight / pdfWidth;
-          const margin = 10;
-          const lineHeight = 10;
+          const margin = 20;
+          const lineHeight = 15;
           let imgHeightInPdf;
           let imgWidthInPdf;
 
@@ -261,81 +259,97 @@ const Results = ({
 
           let currentY = imgHeightInPdf + margin;
 
-          const renderSection = (title, questions) => {
+          const renderSection = (title, questions, color) => {
+            // Add a new page if needed
+            if (currentY + lineHeight * 2 > pdfHeight - margin) {
+              pdf.addPage();
+              currentY = margin;
+            }
+
             pdf.setFont(undefined, "bold");
             pdf.setFontSize(16);
-            pdf.text(title, margin, currentY);
+            pdf.setTextColor(255, 255, 255); // White text for section headers
+            pdf.setFillColor(color);
+            pdf.rect(
+              margin,
+              currentY - lineHeight,
+              pdfWidth - 2 * margin,
+              lineHeight * 2,
+              "F"
+            );
+            pdf.text(title, margin + 5, currentY + 5);
             currentY += lineHeight * 2;
             pdf.setFont(undefined, "normal");
             pdf.setFontSize(12);
+            pdf.setTextColor(0, 0, 0); // Reset to black for text
 
-            questions.forEach((q, index) => {
+            questions.forEach((q) => {
+              // Add a new page if needed
+              if (currentY + lineHeight * 3 > pdfHeight - margin) {
+                pdf.addPage();
+                currentY = margin;
+              }
+
               const question = q.text + " ";
               const answer = q.answer_text;
-              const fullText = question + answer;
 
-              const fullTextLines = pdf.splitTextToSize(
-                fullText,
-                pdfWidth - 2 * margin
+              // Draw rounded rectangle for the question-answer block
+              const blockHeight = lineHeight * 3;
+              pdf.setFillColor(240, 240, 240); // Light grey background
+              pdf.roundedRect(
+                margin,
+                currentY,
+                pdfWidth - 2 * margin,
+                blockHeight,
+                5,
+                5,
+                "F"
               );
 
-              if (fullTextLines.length == 1) {
-                if (currentY + lineHeight > pdfHeight - margin) {
-                  pdf.addPage();
-                  currentY = margin;
-                }
-                pdf.text(question, margin, currentY);
-                pdf.setFont(undefined, "bold");
-                pdf.text(answer, margin + pdf.getTextWidth(question), currentY);
-                pdf.setFont(undefined, "normal");
-                currentY += lineHeight;
-              } else {
-                const questionLines = pdf.splitTextToSize(
-                  question,
-                  pdfWidth - 2 * margin
-                );
-                questionLines.forEach((line) => {
-                  if (currentY + lineHeight > pdfHeight - margin) {
-                    pdf.addPage();
-                    currentY = margin;
-                  }
-                  pdf.text(line, margin, currentY);
-                  currentY += lineHeight;
-                });
+              // Add question text
+              pdf.setFont(undefined, "bold");
+              pdf.text(question, margin + 5, currentY + lineHeight - 2);
+              pdf.setFont(undefined, "normal");
+              pdf.setTextColor(color);
+              pdf.text(answer, margin + 5, currentY + lineHeight + 15); // Added 10 pixels for spacing
+              pdf.setTextColor(0, 0, 0);
 
-                const answerLines = pdf.splitTextToSize(
-                  q.answer_text,
-                  pdfWidth - 2 * margin
-                );
-                pdf.setFont(undefined, "bold");
-                answerLines.forEach((line) => {
-                  if (currentY + lineHeight > pdfHeight - margin) {
-                    pdf.addPage();
-                    currentY = margin;
-                  }
-                  pdf.text(line, margin, currentY);
-                  currentY += lineHeight;
-                });
-                try {
-                  pdf.setFont(undefined, "normal");
-                } catch (error) {
-                  console.error("error setting font to normal", error);
-                }
-              }
-              currentY += lineHeight;
+              currentY += blockHeight + margin / 2;
             });
           };
+
           pdf.setFont(undefined, "bold");
-          pdf.setFontSize(16);
+          pdf.setFontSize(24);
+          pdf.setTextColor(100, 100, 255); // Blue color for title
           currentY += lineHeight * 2;
-          pdf.text("Your Answers", pdfWidth / 2, currentY);
+          pdf.text(
+            "Your Answers",
+            pdfWidth / 2,
+            currentY,
+            null,
+            null,
+            "center"
+          );
           currentY += lineHeight * 2;
           pdf.setFont(undefined, "normal");
           pdf.setFontSize(12);
-          renderSection("Behavior questions", groupedQuestions["B"]);
-          renderSection("Intellectual questions", groupedQuestions["I"]);
-          renderSection("Technical questions", groupedQuestions["T"]);
-          renderSection("Emotional questions", groupedQuestions["E"]);
+
+          renderSection("Behavior Questions", groupedQuestions["B"], "#00796b");
+          renderSection(
+            "Intellectual Questions",
+            groupedQuestions["I"],
+            "#ff9800"
+          );
+          renderSection(
+            "Technical Questions",
+            groupedQuestions["T"],
+            "#512da8"
+          );
+          renderSection(
+            "Emotional Questions",
+            groupedQuestions["E"],
+            "#d32f2f"
+          );
 
           pdf.save("BITE_score.pdf", { returnPromise: true });
           setLoading(false);
@@ -380,7 +394,6 @@ const Results = ({
 
   const Section = ({ title, questions }) => (
     <>
-     
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -412,14 +425,6 @@ const Results = ({
         <section className="results">
           <ShareComponent />
         </section>
-        <div className="report-links-container">
-          <button className="report-link" onClick={generatePDF}>
-            {loading ? "Generating..." : "Download Your Scores as PDF"}
-          </button>
-          <button className="report-link" onClick={() => navigate("/survey")}>
-            Back to Survey
-          </button>
-        </div>
         <div className="separator"></div>
       </div>
       <div className="scrollable-content">
@@ -438,49 +443,18 @@ const Results = ({
           loading={loading}
           ref={svgContainerRef}
         />
-        {/* <div className="answer-container">
-          <p>
-            <strong>Behavior questions</strong>
-          </p>
-          {groupedQuestions["B"].map((q, index) => (
-            <div key={q.num}>
-              {q.text}
-              <strong> {q.answer_text ? q.answer_text : " No answer"}</strong>
-            </div>
-          ))}
-          <p>
-            <strong>Information questions</strong>
-          </p>
-          {groupedQuestions["I"].map((q, index) => (
-            <div key={q.num}>
-              {q.text}
-              <strong> {q.answer_text ? q.answer_text : " No answer"}</strong>
-            </div>
-          ))}
-          <p>
-            <strong>Thought questions</strong>
-          </p>
-          {groupedQuestions["T"].map((q, index) => (
-            <div key={q.num}>
-              {q.text}
-              <strong> {q.answer_text ? q.answer_text : " No answer"}</strong>
-            </div>
-          ))}
-          <p>
-            <strong>Emotion questions</strong>
-          </p>
-          {groupedQuestions["E"].map((q, index) => (
-            <div key={q.num}>
-              {q.text}
-              <strong> {q.answer_text ? q.answer_text : " No answer"}</strong>
-            </div>
-          ))}
-        </div> */}
+        <div className="report-links-container">
+          <button className="report-link" onClick={generatePDF}>
+            {loading ? "Generating..." : "Download your results"}
+          </button>
+          {Object.values(answers).length!==140&&
+          <button className="report-link" onClick={() => navigate("/survey")}>
+            Back to Survey for More Accurate Results
+          </button>}
+        </div>
         <div className="results-wrapper">
           <div className="answer-container">
-            <div className="answer-title">
-            Your Answers
-            </div>
+            <div className="answer-title">Your Answers</div>
             <Section
               title="Behavior Questions"
               questions={groupedQuestions["B"]}

@@ -227,16 +227,17 @@ const SurveyQuestions = ({
                 <button className={"button-text"} onClick={popupCloseHandler}>
                   Continue
                 </button>
-
-                <button
-                  className={"button-text"}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleResults();
-                  }}
-                >
-                  Answers | Results
-                </button>
+                {answeredCount > 40 && (
+                  <button
+                    className={"button-text"}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleResults();
+                    }}
+                  >
+                    Answers | Results
+                  </button>
+                )}
               </div>
             </CustomPopup>
           </div>
@@ -290,15 +291,17 @@ const SurveyQuestions = ({
                   >
                     {">"}
                   </button>
-                  <button
-                    className={"button-text"}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleResults();
-                    }}
-                  >
-                    Answers | Results
-                  </button>
+                  {answeredCount > 40 && (
+                    <button
+                      className={"button-text"}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleResults();
+                      }}
+                    >
+                      Answers | Results
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

@@ -8,10 +8,7 @@ const Fork = ({ host_development }) => {
   const [email, setEmail] = useState("");
   const [story, setStory] = useState("");
   const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  
   const submitStoryText = async (email, story) => {
     try {
       await axios.post(`${host_development}/save_story/`, {
