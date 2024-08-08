@@ -51,7 +51,8 @@ html * {
   margin-left: 0px;
   margin-right: 0px;
   min-height: 100vh;
-  overflow-y: auto;
+  overflow-y: hidden;
+  width: 100%;
 }
 
 .bg_style-main-content {
@@ -90,8 +91,12 @@ html * {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   flex-grow: 1;
+  max-width: 1140px;
+  margin: auto;
+  padding: 0 40px;
+  width: 100%;
 
 }
 

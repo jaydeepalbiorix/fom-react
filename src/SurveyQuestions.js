@@ -256,7 +256,9 @@ const SurveyQuestions = ({
                         : "animationDesignDown"
                     }`}
                   >
-                    <div className="questionText">{`${currentPage})  ${question.text}`}</div>
+                    <div className="questionText">{`${
+                      currentPage > 9 ? `${currentPage - 9})` : ""
+                    }  ${question.text}`}</div>
                     <RadioDropdown
                       question={question}
                       answers={answers}

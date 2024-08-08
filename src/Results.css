@@ -2,12 +2,13 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-
+  width: 100%;
   background-image: url(./assets/Images/background-image.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   scrollbar-width: none;
+  overflow-y: hidden;
 }
 
 .results-container::-webkit-scrollbar {
@@ -15,7 +16,7 @@
 }
 
 .scrollable-content {
-  margin-top: 100px;
+  /* margin-top: 100px; */
   height: calc(100% - 115px);
   flex: 1;
   overflow: auto;
@@ -26,8 +27,8 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  position: fixed;
-  top: 0;
+  /* position: fixed;
+  top: 0; */
   z-index: 1000;
   padding: 2px 0;
   justify-content: center;
@@ -36,8 +37,7 @@
   background-repeat: no-repeat;
   background-size: cover; */
   gap: 2px;
-  left: 0;
-  right: 0;
+
 }
 
 .answer-title {

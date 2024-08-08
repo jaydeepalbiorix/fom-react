@@ -207,7 +207,6 @@ const Results = ({
     }
   }, [answers, questions, textResponses, heights]);
 
-
   useEffect(() => {
     setIsDataLoaded(true);
   }, [heights]);
@@ -420,13 +419,6 @@ const Results = ({
 
   return (
     <div className="results-container">
-      <div className="report-controls" ref={reportControlsRef}>
-        <div className="separator"></div>
-        <section className="results">
-          <ShareComponent />
-        </section>
-        <div className="separator"></div>
-      </div>
       <div className="scrollable-content">
         <PDFGenerator
           content={
@@ -447,10 +439,11 @@ const Results = ({
           <button className="report-link" onClick={generatePDF}>
             {loading ? "Generating..." : "Download your results"}
           </button>
-          {Object.values(answers).length!==140&&
-          <button className="report-link" onClick={() => navigate("/survey")}>
-            Back to Survey for More Accurate Results
-          </button>}
+          {Object.values(answers).length !== 140 && (
+            <button className="report-link" onClick={() => navigate("/survey")}>
+              Back to Survey for More Accurate Results
+            </button>
+          )}
         </div>
         <div className="results-wrapper">
           <div className="answer-container">
@@ -472,13 +465,13 @@ const Results = ({
               questions={groupedQuestions["E"]}
             />
           </div>
-          {/* <div>
-            <img
-              class="card__img-desktop"
-              src="https://raw.githubusercontent.com/MizAndhre/FAQ-accordion-card/2ff2a02d093554f14d0390a409e825669313a16e/images/illustration-woman-online-desktop.svg"
-              alt="Woman online desktop"
-            />
-          </div> */}
+        </div>
+        <div className="report-controls" ref={reportControlsRef}>
+          <div className="separator"></div>
+          <section className="results">
+            <ShareComponent />
+          </section>
+          <div className="separator"></div>
         </div>
         <div style={{ position: "absolute", top: "-9999px", left: "-9999px" }}>
           <PDFGenerator
