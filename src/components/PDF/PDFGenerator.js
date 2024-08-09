@@ -1,4 +1,4 @@
-import React, { useRef, useState, forwardRef } from "react";
+import React, { forwardRef } from "react";
 import { ClipLoader } from "react-spinners";
 
 const PDFGenerator = forwardRef(({ content, loading }, ref) => {

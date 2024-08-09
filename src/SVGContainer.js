@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { DoubleArrowClass, SingleArrow } from "./Arrows.js";
 import "./SVGContainer.css";
 import {
@@ -91,18 +90,11 @@ function SVGContainer({
   const end_arrow_offset = 10;
   const [robotoRegularBase64, setRobotoRegularBase64] = useState("");
   const [robotoBoldBase64, setRobotoBoldBase64] = useState("");
-  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
-  const [updatedQuestions, setUpdatedQuestions] = useState([]);
+  const [isGeneratingPdf] = useState(false);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
-  const [groupedQuestions, setGroupedQuestions] = useState({
-    B: [],
-    I: [],
-    T: [],
-    E: [],
-    D: [],
-  });
+
   const fullHeight = pdf ? 670 : 570;
-  const [sections, setSections] = useState({
+  const [sections] = useState({
     behavior: null,
     information: null,
     thought: null,
@@ -167,12 +159,10 @@ function SVGContainer({
       updatedQuestionsList.forEach((question) => {
         newGroupedQuestions[question.category].push(question);
       });
-      setGroupedQuestions(newGroupedQuestions);
-      setUpdatedQuestions(updatedQuestionsList);
       setSvgHeight(svgHeight);
       setIsDataLoaded(true);
     }
-  }, [answers, questions, textResponses]);
+  }, [answers, questions, svgHeight, textResponses]);
 
   useEffect(() => {
     const fetchFont = async (url) => {
@@ -189,23 +179,6 @@ function SVGContainer({
     };
 
     loadFonts();
-  }, []);
-
-  useEffect(() => {
-    if (svgRef.current) {
-      const width = svgRef.current.getBoundingClientRect().width;
-      const handleResize = () => {
-        const width = svgRef.current.getBoundingClientRect().width;
-        const endarrow = width - end_arrow_offset;
-        const endtext = width - 20;
-      };
-
-      window.addEventListener("resize", handleResize);
-
-      handleResize();
-
-      return () => window.removeEventListener("resize", handleResize);
-    }
   }, []);
 
   if (!isDataLoaded) {
@@ -226,11 +199,6 @@ function SVGContainer({
     { color: destructiveColor, label: "Destructive" },
   ];
   const legendItemWidth = 50;
-
-  const imageWidth = 120;
-  const imageHeight = 120;
-  const imageX = svgWidth - imageWidth - 40;
-  const imageY = fullHeight - imageHeight + 100;
 
   if (!robotoRegularBase64 || !robotoBoldBase64) {
     return <div>Loading fonts...</div>;
@@ -383,7 +351,7 @@ function SVGContainer({
             textAnchor="middle"
             style={{
               fontWeight: 700,
-              fontSize: svgWidth < 500 ? "4vw" : "clamp(16px, 3vw, 32px)",
+              fontSize: svgWidth < 500 ? "3vw" : "clamp(10px, 2vw, 24px)",
             }}
           >
             <tspan fill={titleText}>
@@ -401,7 +369,7 @@ function SVGContainer({
               textAnchor="middle"
               style={{
                 fontWeight: 700,
-                fontSize: svgWidth < 500 ? "3.5vw" : "clamp(16px, 3vw, 32px)",
+                fontSize: svgWidth < 500 ? "3vw" : "clamp(10px, 2vw, 24px)",
               }}
             >
               <tspan fill={titleText}>{word[0]}</tspan>
@@ -447,14 +415,14 @@ function SVGContainer({
               <rect
                 x={svgWidth / 2 - legendItemWidth}
                 y="0"
-                width="20"
-                height="20"
+                width="18"
+                height="18"
                 fill={item.color}
               />
               <text
                 x={svgWidth / 2 + 40 - legendItemWidth}
                 y="15"
-                fontSize="24"
+                fontSize="20"
                 fill={normalText}
               >
                 {item.label}
@@ -464,23 +432,23 @@ function SVGContainer({
           {pdf ? (
             <>
               <text
-                x={svgWidth / 2}
-                y={panelY + panelHeight + 30}
+                x="50%" // Center horizontally
+                y={panelY + panelHeight + 30} // Adjust the vertical position
                 fill="white"
                 textAnchor="middle"
                 style={{
                   fontWeight: 400,
-                  fontSize: svgWidth < 500 ? "2vw" : "clamp(16px, 3vw, 32px)",
+                  fontSize: svgWidth < 500 ? "1.5vw" : "clamp(10px, 1.5vw, 20px)",
                 }}
               >
                 Any healthy group/relationship can withstand scrutiny.
               </text>
               <text
-                x={svgWidth / 2}
-                y={panelY + panelHeight + 65}
+                x="50%" // Center horizontally
+                y={panelY + panelHeight + 50} // Adjust the vertical position
                 fill="white"
                 textAnchor="middle"
-                style={{ fontWeight: 400, fontSize: "24px" }}
+                style={{ fontWeight: 400, fontSize: "16px" }}
               >
                 Find out how yours measures up at{" "}
                 <tspan fill={titleText}>bitemodel.com</tspan>
@@ -495,7 +463,7 @@ function SVGContainer({
             fill="lightblue"
             style={{
               fontWeight: 400,
-              fontSize: svgWidth < 500 ? "3vw" : "clamp(16px, 3vw, 32px)",
+              fontSize: svgWidth < 500 ? "1.5vw" : "clamp(10px, 1.5vw, 18px)",
             }}
           >
             Powered by BITE Model
@@ -510,14 +478,6 @@ function SVGContainer({
               </tspan>
             </tspan>
           </text>
-          {/* <image
-            x={imageX}
-            y={imageY}
-            width={imageWidth}
-            height={imageHeight}
-            href="/static/logo512.png"
-          /> */}
-
           {svgWidth < 500 ? (
             <>
               <tspan x={svgWidth / 2} dy="0">
@@ -557,18 +517,6 @@ function SVGContainer({
               </tspan>
             </>
           )}
-          {/* <text
-            x={svgWidth / 2}
-            y={fullHeight + 60}
-            textAnchor="middle"
-            style={{
-              fontWeight: 700,
-              fontSize: svgWidth < 500 ? "6vw" : "clamp(16px, 3vw, 32px)",
-            }}
-            fill="black"
-          >
-            Your Answers
-          </text> */}
           {sections.behavior}
           {sections.information}
           {sections.thought}
@@ -579,51 +527,6 @@ function SVGContainer({
     </>
   );
 }
-
-const InfluenceClass = ({ text, textBad, index, svgWidth, lineSpacing }) => {
-  const startY = 175;
-  const yPosition = startY + index * lineSpacing;
-
-  return (
-    <>
-      <rect
-        x="5"
-        y={yPosition - 10}
-        width="10"
-        height="10"
-        fill={text.length > 2 ? "lightblue" : "white"}
-      />
-      <text
-        x="20"
-        y={yPosition}
-        fill="white"
-        className="influenceTextGood"
-        cursor="pointer"
-        onClick={() => handleInfluenceClick(text)}
-      >
-        {text}
-      </text>
-      <text
-        textAnchor="end"
-        x={svgWidth - 25}
-        y={yPosition}
-        fill="white"
-        className="influenceTextBad"
-        cursor="pointer"
-        onClick={() => handleInfluenceClick(text)}
-      >
-        {textBad}
-      </text>
-      <rect
-        x={svgWidth - 15}
-        y={yPosition - 10}
-        width="10"
-        height="10"
-        fill={text.length > 1 ? "orange" : "white"}
-      />
-    </>
-  );
-};
 function ScoreComponent({ score, svgWidth, starty }) {
   return (
     <>
@@ -656,6 +559,4 @@ function ScoreComponent({ score, svgWidth, starty }) {
   );
 }
 
-const handleInfluenceClick = (text) => {
-};
 export default SVGContainer;

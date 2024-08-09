@@ -64,19 +64,19 @@ function ShareComponent() {
         <MetaTags reportUuid={shareUrl.split("/").pop()} />
 
         <button className="button-icon" onClick={handleFacebookShare}>
-          <FacebookIcon size={32} round />
+          <FacebookIcon size={40} round />
         </button>
 
         <button className="button-icon" onClick={handleTwitterShare}>
-          <TwitterIcon size={32} round />
+          <TwitterIcon size={40} round />
         </button>
 
         <button className="button-icon" onClick={handleEmailShare}>
-          <EmailIcon size={32} round />
+          <EmailIcon size={40} round />
         </button>
 
         <button className="button-icon" onClick={handleSMSShare}>
-          <SMSIcon size={32} round />
+          <SMSIcon size={40} round />
         </button>
       </div>
     </>

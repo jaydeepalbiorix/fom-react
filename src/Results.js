@@ -28,7 +28,6 @@ const Results = ({
   const reportControlsRef = useRef(null);
   const navigate = useNavigate();
   const [heights, setHeights] = useState([]);
-  const [isResultLoaded, setResultLoaded] = useState(false);
   const [updatedQuestions, setUpdatedQuestions] = useState([]);
   const [groupedQuestions, setGroupedQuestions] = useState({
     B: [],
@@ -211,10 +210,6 @@ const Results = ({
     setIsDataLoaded(true);
   }, [heights]);
 
-  useEffect(() => {
-    setResultLoaded(true);
-  }, [updatedQuestions]);
-
   const generatePDF = () => {
     setLoading(true);
     const svgRef = hiddenSvgRef.current;
@@ -228,7 +223,6 @@ const Results = ({
             format: [816, 1056],
           });
 
-          const imgProps = pdf.getImageProperties(imgData);
           const imgWidth = canvas.width;
           const imgHeight = canvas.height;
           const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -478,7 +472,7 @@ const Results = ({
             content={
               <SVGContainer
                 key={JSON.stringify(updatedQuestions)}
-                svgWidth={768}
+                svgWidth={1200}
                 bite_score={biteScore}
                 questions={updatedQuestions}
                 answers={answers}
